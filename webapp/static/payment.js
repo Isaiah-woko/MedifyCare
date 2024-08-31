@@ -1,4 +1,3 @@
-console.log("Sanity check!");
 fetch("/pay/config")
 .then((result) => { return result.json(); })
 .then((data) => {
