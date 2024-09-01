@@ -16,9 +16,9 @@ def create_app(object_name):
     from .main import main_create_module
     from .auth import auth_create_module
     from .chat import chat_create_module
-    # from .payment import payment_create_module
+    from .payment import payment_create_module
     main_create_module(app)
     auth_create_module(app)
     chat_create_module(app)
-    # payment_create_module(app)
+    payment_create_module(app)
     return app

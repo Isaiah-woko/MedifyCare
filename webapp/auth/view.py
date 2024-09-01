@@ -2,7 +2,8 @@ from flask import (render_template,
                    Blueprint,
                    redirect,
                    url_for,
-                   flash)
+                   flash,
+                   make_response)
 from flask_login import login_user, logout_user
 from .models import db, User, Role
 from .forms import LoginForm, RegisterForm
@@ -23,7 +24,9 @@ def login():
         user = User.query.filter_by(username=form.username.data).one()
         login_user(user, remember=form.remember.data)
         flash("You have been logged in.", category="success")
-        return redirect(url_for('main.index'))
+        response = make_response(redirect(url_for('main.index')))
+        response.set_cookie('my_cookie', 'cookie_value', samesite='None', secure=True)
+        return response
 
     return render_template('login.html', form=form)
 
@@ -49,7 +52,12 @@ def register():
         db.session.commit()
 
         flash("Your user has been created, please login.", category="success")
-
-        return redirect(url_for('.login'))
+        # Create a response object
+        response = make_response(redirect(url_for('.login')))
+        
+        # Set a cookie (if needed)
+        response.set_cookie('new_user_cookie', 'cookie_value', samesite='None', secure=True)
+        
+        return response
 
     return render_template('register.html', form=form)

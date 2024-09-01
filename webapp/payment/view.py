@@ -27,7 +27,7 @@ html-js => get_checkout_session_id =?
 """
 @payment_blueprint.route("/create-checkout-session")
 def create_checkout_session():
-    domain_url = "https://www.robotic5333.tech/pay/"
+    domain_url = request.host_url + 'pay/'
     stripe.api_key = stripe_keys["secret_key"]
 
     try:

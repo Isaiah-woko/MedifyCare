@@ -8,10 +8,26 @@
     <title>{% block title %}Blog{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <!--add Content security policy: well add each url resource like the AI and strip and the css ...
+    'unsafe-inline' => it allow inline scripts. 
+    -->
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self'; 
+    script-src 'self' 'unsafe-inline' https://js.stripe.com https://use.fontawesome.com  https://m.stripe.network; 
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://stackpath.bootstrapcdn.com https://use.fontawesome.com https://cdn.jsdelivr.net; 
+    font-src 'self' https://use.fontawesome.com; 
+    img-src 'self' data:; 
+    connect-src 'self' https://api.stripe.com;
+    frame-src 'self' https://app.vectorshift.ai https://js.stripe.com;
+">
+
+    {% if current_user.is_authenticated %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <script src="https://js.stripe.com/v3/"></script> 
     <script src="{{ url_for('static', filename='payment.js') }}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    {% endif %}
 </head>
 <body>
 {% include 'navbar.html' %}
