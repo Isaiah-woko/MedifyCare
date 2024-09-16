@@ -24,12 +24,14 @@ header p {
 }
 
 /* Chat section styles */
-/* Chat section styles */
 .chat-section {
     width: 100%;
     max-width: 1000px;
     margin: 20px auto;
-    background-color: grey;
+    background-image: url('/static/images/doctor_chat.png');
+    background-size: cover; /* This ensures the image covers the entire area */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;

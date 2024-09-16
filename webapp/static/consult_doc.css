@@ -30,13 +30,17 @@ header p {
     width: 100%;
     max-width: 1000px;
     margin: 20px auto;
-    background-color: grey;
+    background-image: url('/static/images/consult_doc.png');
+    background-size: cover; /* This ensures the image covers the entire area */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     height: 80vh; /* Full height of viewport minus header */
 }
+
 
 .chat-window {
     padding: 10px;
