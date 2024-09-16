@@ -39,6 +39,7 @@
         const room = "{{ doctor.username }}_{{ current_user.username }}";
         console.log("Joining room:", room);
         socket.emit("join_room", room);
+        
 
         // Debug connection
         socket.on("connect", () => {
@@ -48,16 +49,23 @@
         // Handle received messages
         socket.on("receive_message", function(data) {
         console.log("Message received:", data);
+
+        // Ensure data is an object and has the 'message' property
         const chatHistory = document.getElementById("chat-history");
         if (chatHistory) {
+            // Check if the sender is the current user or the other person
+            const messageClass = data.sender === "{{ current_user.username }}" ? 'current-user' : 'other-person';
+            const senderLabel = data.sender === "{{ current_user.username }}" ? 'You' : data.sender;
+
             chatHistory.innerHTML += `<div class="message-container">
-                                                    <p class="message current-user">
-                                                        <strong>You:</strong> ${message}
-                                                    </p>
-                                                </div>`;
+                                        <p class="message ${messageClass}">
+                                            <strong>${senderLabel}:</strong> ${data.message}
+                                        </p>
+                                    </div>`;
             chatHistory.scrollTop = chatHistory.scrollHeight;
-            }
-        });
+        }
+    });
+
 
         // Handle send button click
         document.getElementById("send-btn").addEventListener("click", function() {
@@ -71,17 +79,6 @@
 
             // Clear the input field after sending
             messageInput.value = "";
-
-            // Dynamically append messages
-            const chatHistory = document.getElementById("chat-history");
-            if (chatHistory) {
-            chatHistory.innerHTML += `<div class="message-container">
-                                                    <p class="message current-user">
-                                                        <strong>You:</strong> ${message}
-                                                    </p>
-                                                </div>`;
-            chatHistory.scrollTop = chatHistory.scrollHeight;
-            }
         }
         });
 

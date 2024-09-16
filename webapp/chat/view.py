@@ -1,7 +1,7 @@
 from flask import render_template, request, jsonify
 from flask_login import login_required, current_user
 from flask import Blueprint
-from flask_socketio import emit
+from flask_socketio import emit, join_room
 from webapp import socketio
 from ..auth.models import User, Role
 from .chat_controller import save_message, get_messages
@@ -83,6 +83,12 @@ def handle_disconnect():
     print(f"{current_user.username} disconnected.")
 
 
+@socketio.on('join_room')
+def handle_join_room(room):
+    join_room(room)
+    print(f"User joined room: {room}")
+
+
 @socketio.on('send_message')
 @login_required
 def handle_send_message(data):
@@ -101,31 +107,13 @@ def handle_send_message(data):
         # Save the message using the save_message function
         message = save_message(receiver_id=receiver.id, content=data['message'])
 
+        print(f"Emitting message to room {room}: {message.content}")
+
         # Emit the message to the room with additional details
         socketio.emit('receive_message', {
             'message': message.content,
+            'sender': current_user.username  # Include sender's username
         }, room=room)
     else:
         # Handle case where the receiver is not found
         emit('error', {'msg': 'Receiver not found'}, room=room)
-
-
-# @chat_blueprint.route('/request_video_call', methods=['POST'])
-# def request_video_call():
-#     data = request.get_json()
-#     video_call_id = data.get("videoCallID")
-#     doctor_id = data.get("doctorId")
-
-#     message = Message(
-#         sender_id=current_user.id,
-#         receiver_id=doctor_id,
-#         content=f"Video call request: {video_call_id}",
-#         is_video_call=True,
-#         video_call_id=video_call_id,
-#         # timestamp=datetime.utcnow()
-#     )
-#     db.session.add(message)
-#     db.session.commit()
-
-#     return jsonify({"status": "success"}), 200
-
