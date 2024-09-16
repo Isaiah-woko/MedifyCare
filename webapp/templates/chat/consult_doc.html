@@ -8,14 +8,8 @@
 </head>
 <body>
     <header>
-        {% for message in messages %}
-            <h1>Chat with Dr. {{ doctor.username }}</h1>
-            <p>Medical Field: {{ doctor.specialty }}</p>
-            {% if message.is_video_call %}
-                <button class="btn btn-info">Video Call Requested: {{ message.video_call_id }}</button>
-            {% endif %}
-        {% endfor %}
-
+        <h1>Chat with Dr. {{ doctor.username }}</h1>
+        <p>Medical Field: {{ doctor.specialty }}</p>
     </header>
 
     <section class="chat-section">
@@ -41,65 +35,71 @@
     <script type="text/javascript">
         const socket = io();
 
-        
         // Define the room name
         const room = "{{ doctor.username }}_{{ current_user.username }}";
-        console.log('Joining room:', room);
-        socket.emit('join_room', room);
+        console.log("Joining room:", room);
+        socket.emit("join_room", room);
 
         // Debug connection
-        socket.on('connect', () => {
-            console.log('Connected to WebSocket server');
+        socket.on("connect", () => {
+        console.log("Connected to WebSocket server");
         });
 
-    //     // Handle received messages
-    //     socket.on('receive_message', function(data) {
-    //     console.log('Message received:', data);
-    //     const chatHistory = document.getElementById('chat-history');
-    //         if (chatHistory) {
-    //             chatHistory.innerHTML += `<div class="message-container">
-    //                                         <p class="message current-user">
-    //                                             <strong>You:</strong> ${message}
-    //                                         </p>
-    //                                     </div>`;
-    //             chatHistory.scrollTop = chatHistory.scrollHeight;
-    //         }
-    // });
+        // Handle received messages
+        socket.on("receive_message", function(data) {
+        console.log("Message received:", data);
+        const chatHistory = document.getElementById("chat-history");
+        if (chatHistory) {
+            chatHistory.innerHTML += `<div class="message-container">
+                                                    <p class="message current-user">
+                                                        <strong>You:</strong> ${message}
+                                                    </p>
+                                                </div>`;
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+        });
+
         // Handle send button click
-            document.getElementById('send-btn').addEventListener('click', function() {
-            const messageInput = document.getElementById('message');
-            const message = messageInput.value;
-            if (message.trim()) {
-                console.log('Sending message:', message);
-                socket.emit('send_message', { room: room, message: message });
-                messageInput.value = '';
+        document.getElementById("send-btn").addEventListener("click", function() {
+        const messageInput = document.getElementById("message");
+        const message = messageInput.value;
 
-                /// Dynamically append messages with the correct classes
-            const chatHistory = document.getElementById('chat-history');
+        // Ensure the message is not empty
+        if (message.trim()) {
+            console.log("Sending message:", message);
+            socket.emit("send_message", { room: room, message: message });
+
+            // Clear the input field after sending
+            messageInput.value = "";
+
+            // Dynamically append messages
+            const chatHistory = document.getElementById("chat-history");
             if (chatHistory) {
-                chatHistory.innerHTML += `<div class="message-container">
-                                            <p class="message current-user">
-                                                <strong>You:</strong> ${message}
-                                            </p>
-                                        </div>`;
-                chatHistory.scrollTop = chatHistory.scrollHeight;
+            chatHistory.innerHTML += `<div class="message-container">
+                                                    <p class="message current-user">
+                                                        <strong>You:</strong> ${message}
+                                                    </p>
+                                                </div>`;
+            chatHistory.scrollTop = chatHistory.scrollHeight;
             }
-
-            }
+        }
         });
 
         // Handle Enter key press
-        document.getElementById('message').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                document.getElementById('send-btn').click();
+        document
+        .getElementById("message")
+        .addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("send-btn").click();
             }
         });
 
         // Handle errors
-        socket.on('error', function(data) {
-            console.error('Error:', data.msg);
+        socket.on("error", function(data) {
+        console.error("Error:", data.msg);
         });
+
     </script>
 
 </body>

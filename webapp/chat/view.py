@@ -23,7 +23,7 @@ def my_doctor():
         User.username,
         User.specialty,
         User.bio,
-        # User.is_available  # Assuming you have a field for availability
+        # User.is_available  # Assuming Ahed added a field for availability
     ).join(User.roles).filter(Role.name == 'doctor').all()
     specialties = list(set(doctor.specialty for doctor in doctors))
     return render_template('patient_home.html', doctors=doctors, specialties=specialties)
@@ -103,24 +103,29 @@ def handle_send_message(data):
 
         # Emit the message to the room with additional details
         socketio.emit('receive_message', {
-            'user': current_user.username,
             'message': message.content,
-            'timestamp': message.timestamp.strftime('%Y-%m-%d %H:%M:%S')
         }, room=room)
     else:
         # Handle case where the receiver is not found
         emit('error', {'msg': 'Receiver not found'}, room=room)
 
 
-@chat_blueprint.route('/request_video_call', methods=['POST'])
-def request_video_call():
-    data = request.get_json()
-    video_call_id = data.get('videoCallID')
+# @chat_blueprint.route('/request_video_call', methods=['POST'])
+# def request_video_call():
+#     data = request.get_json()
+#     video_call_id = data.get("videoCallID")
+#     doctor_id = data.get("doctorId")
 
-    # Save the video call request to the database
-    new_message = Message(video_call_id=video_call_id, user_id=current_user.id, is_video_call=True)
-    db.session.add(new_message)
-    db.session.commit()
+#     message = Message(
+#         sender_id=current_user.id,
+#         receiver_id=doctor_id,
+#         content=f"Video call request: {video_call_id}",
+#         is_video_call=True,
+#         video_call_id=video_call_id,
+#         # timestamp=datetime.utcnow()
+#     )
+#     db.session.add(message)
+#     db.session.commit()
 
-    return jsonify({'status': 'success', 'message': 'Video call request submitted!'})
+#     return jsonify({"status": "success"}), 200
 
