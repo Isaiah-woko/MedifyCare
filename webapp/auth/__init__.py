@@ -20,6 +20,7 @@ def load_user(userid):
     from .models import User
     return User.query.get(userid)
 
+# create the auth
 def auth_create_module(app,**kwargs):
     bcrypt.init_app(app)
     login_manager.init_app(app)

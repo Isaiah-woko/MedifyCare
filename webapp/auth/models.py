@@ -1,13 +1,14 @@
 from . import bcrypt, AnonymousUserMixin
 from .. import db
 
+# the junction table for many-many relationship between (user, role)
 roles = db.Table(
     'role_users',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('role_id', db.Integer, db.ForeignKey('role.id'))
 )
 
-
+# the User model
 class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(255), nullable=False, index=True, unique=True)
@@ -69,7 +70,7 @@ class User(db.Model):
     @property
     def actived_subscription(self):
         return self.activetion
-
+# the Role model
 class Role(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)

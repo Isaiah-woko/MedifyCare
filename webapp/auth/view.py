@@ -9,7 +9,7 @@ from .forms import LoginForm, RegisterForm
 from werkzeug.utils import secure_filename
 import os
 
-# for upload an image
+# check if the file uploaded is image with extension
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 def allowed_file(filename):
     return '.' in filename and \
@@ -20,7 +20,7 @@ auth_blueprint = Blueprint(
     template_folder='../templates/auth',
     url_prefix="/auth"
 )
-
+# the login endpoint
 @auth_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -31,14 +31,14 @@ def login():
         return redirect(url_for('main.index'))
     return render_template('login.html', form=form)
 
-
+# the logout endpoint
 @auth_blueprint.route('/logout', methods=['GET', 'POST'])
 def logout():
     logout_user()
     flash("You have been logged out.", category="success")
     return redirect(url_for('main.index'))
 
-
+# the registeration endpoint
 @auth_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()

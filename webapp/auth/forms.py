@@ -5,11 +5,13 @@ from wtforms.validators import DataRequired, Length, EqualTo, URL
 from .models import User, Role
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.utils import secure_filename
-# for upload an image
+
+# check if the file uploaded is image with extension
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+# login form and validater
 class LoginForm(Form):
     username = StringField('Username', [DataRequired(), Length(max=255)])
     password = PasswordField('Password', [DataRequired()])
@@ -35,6 +37,7 @@ class LoginForm(Form):
 
         return True
 
+# registration form and validater
 
 class RegisterForm(Form):
     username = StringField('Username', validators=[DataRequired(), Length(max=255)])
