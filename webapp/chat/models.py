@@ -10,5 +10,3 @@ class Message(db.Model):
     content = db.Column(db.Text)
     timestamp = db.Column(db.DateTime, default=datetime.now)
     phone_number = db.Column(db.String(20))
-    # video_call_id = db.Column(db.String(255))
-    # is_video_call = db.Column(db.Boolean, default=False)
