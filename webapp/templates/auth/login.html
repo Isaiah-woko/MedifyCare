@@ -16,30 +16,28 @@
                 <div class="input-box">
 			<input type="text" name="username" placeholder="Username">
 			<i class='bx bxs-user'></i>
-                    {% if form.username.errors %}
+			{% if form.username.errors %}
                         {% for e in form.username.errors %}
                             <p class="help-block">{{ e }}</p>
                         {% endfor %}
-                    {% endif %}
+			{% endif %}
                 </div>
                 <div class="input-box">
-                    {{ form.password.label }}
+                    <input type="password" name="password" placeholder="Password">
+		    <i class='bx bxs-lock-alt'></i>
                     {% if form.password.errors %}
                         {% for e in form.password.errors %}
                             <p class="help-block">{{ e }}</p>
                         {% endfor %}
                     {% endif %}
-                    {{ form.password(class_='form-control') }}
-		    <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="remember-forgot">
-                    {{ form.remember.label }}
+                    <label><input type="checkbox" name="remember_me">Remember Me</label>
                     {% if form.remember.errors %}
                         {% for e in form.remember.errors %}
                             <p class="help-block">{{ e }}</p>
                         {% endfor %}
                     {% endif %}
-                    {{ form.remember(class_='form-control') }}
                 </div>
                 <input class="btn" type="submit" value="Login">
                 <div class="register-link">
