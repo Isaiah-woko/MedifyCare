@@ -14,13 +14,13 @@
                 {{ form.hidden_tag() }}
                 <h1>Login</h1>
                 <div class="input-box">
-                    {{ form.username.label }}
+			<input type="text" name="username" placeholder="Username">
+			<i class='bx bxs-user'></i>
                     {% if form.username.errors %}
                         {% for e in form.username.errors %}
                             <p class="help-block">{{ e }}</p>
                         {% endfor %}
                     {% endif %}
-                    {{ form.username(class_='form-control') }}
                 </div>
                 <div class="input-box">
                     {{ form.password.label }}
@@ -30,6 +30,7 @@
                         {% endfor %}
                     {% endif %}
                     {{ form.password(class_='form-control') }}
+		    <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="remember-forgot">
                     {{ form.remember.label }}
