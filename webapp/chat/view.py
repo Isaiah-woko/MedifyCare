@@ -1,4 +1,4 @@
-from flask import render_template, request, jsonify, flash
+from flask import render_template, request, flash
 from flask_login import login_required, current_user
 from flask import Blueprint
 from flask_socketio import emit, join_room
@@ -24,7 +24,7 @@ def my_doctor():
         User.username,
         User.specialty,
         User.bio,
-        # User.is_available  # Assuming you have a field for availability
+        # User.is_available  # Assuming Ahed have a field for availability
     ).join(User.roles).filter(Role.name == 'doctor').all()
     specialties = list(set(doctor.specialty for doctor in doctors))
     if request.method == 'POST':
@@ -33,7 +33,7 @@ def my_doctor():
         msg = Message(sender_id=current_user.id, receiver_id=doctor_id, phone_number=phone_number)
         db.session.add(msg)
         db.session.commit()
-        flash("whatsapp number sended", category="success")
+        flash("whatsapp number sent", category="success")
     return render_template('patient_home.html', doctors=doctors, specialties=specialties)
 
 
