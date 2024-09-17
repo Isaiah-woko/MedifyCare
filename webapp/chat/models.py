@@ -9,5 +9,6 @@ class Message(db.Model):
     receiver_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.now)
+    phone_number = db.Column(db.String(20))
     # video_call_id = db.Column(db.String(255))
     # is_video_call = db.Column(db.Boolean, default=False)
