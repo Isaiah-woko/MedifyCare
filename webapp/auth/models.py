@@ -16,6 +16,8 @@ class User(db.Model):
     activetion = db.Column(db.Boolean, default=False)
     bio = db.Column(db.String(255))
     image_filename = db.Column(db.String(150))
+    sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy=True)
+    received_messages = db.relationship('Message', foreign_keys='Message.receiver_id', backref='receiver', lazy=True)
     roles = db.relationship(
         'Role',
         secondary=roles,

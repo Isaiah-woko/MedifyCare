@@ -14,13 +14,15 @@
     <section class="patient-list">
         <h2>Patients Who Have Messaged You</h2>
         <div class="patient-cards">
-            {% for patient in patients %}
+            {% for message in messages %}
             <div class="patient-card">
                 <img src="../static/images/{{ 'doc1.png' if loop.index % 2 == 1 else 'doc2.jpg' }}" class="card-img-top" alt="Doctor picture">
-                <h3>{{ patient.username }}</h3>
-                <a href="{{ url_for('chat.view_patient_messages', username=patient.username) }}" class="view-messages">View Messages</a>
-                {% if patient.phone_number %}
-                - Phone: {{ patient.phone_number }}
+                <h3>{{ message.sender.username }}</h3>
+                {% if message.content %}
+                <a href="{{ url_for('chat.view_patient_messages', username=message.sender.username) }}" class="view-messages">View Messages</a>
+                {% endif %} 
+                {% if message.phone_number %}
+                <a href="#" class="view-messages">Video Call request on: {{ message.phone_number }}</a>
                 {% endif %}
             </div>
             {% endfor %}

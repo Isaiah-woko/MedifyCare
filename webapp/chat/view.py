@@ -54,12 +54,13 @@ def consult_doc(username):
 @login_required
 def my_patients():
     # Fetch the list of patients who have sent messages to the doctor
-    patients = User.query.join(
-        Message,
-        (Message.sender_id == User.id) & (Message.receiver_id == current_user.id)
-    ).join(Role, User.roles).filter(Role.name == 'patient').distinct().all()
+    messages = Message.query.join(User, Message.sender_id == User.id)\
+        .filter(Message.receiver_id == current_user.id)\
+        .join(Role, User.roles)\
+        .filter(Role.name == 'patient')\
+        .distinct().all()
 
-    return render_template('doc_home.html', patients=patients)
+    return render_template('doc_home.html', messages=messages)
 
 
 @chat_blueprint.route('/patient/<username>', methods=['GET'])

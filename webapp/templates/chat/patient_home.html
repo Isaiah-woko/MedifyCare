@@ -38,21 +38,20 @@
                 <button class="videoCallRequestBtn click-btn" data-doctor-id="{{ doctor.id }}">Request Video Call</button>
                 <button class="click-btn" id="schedule-btn">Schedule Visit</button>
             </div>
-            {% endfor %}
-        </div>
-
-        <!-- Modal for Video Call Request -->
-        <div id="videoCallModal" class="modal">
-            <div class="modal-content">
-                <span class="close" data-modal="videoCallModal">&times;</span>
-                <h2>Request a Video Call</h2>
-                <form id="videoCallForm">
-                    <label for="videoCallID">Enter your WhatsApp Number or Video Call ID:</label>
-                    <input type="text" id="videoCallID" name="videoCallID" required>
-                    <input type="hidden" id="doctorId" name="doctorId">
-                    <button type="submit" class="btn btn-success">Submit Request</button>
-                </form>
+            <!-- Modal for Video Call Request -->
+            <div id="videoCallModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" data-modal="videoCallModal">&times;</span>
+                    <h2>Request a Video Call</h2>
+                    <form method="POST" enctype="multipart/form-data" id="videoCallForm">
+                        <label for="videoCallID">Enter your WhatsApp Number or Video Call ID:</label>
+                        <input type="text" id="videoCallID" name="videoCallID" required>
+                        <input type="hidden" id="doctorId" name="doctorId" value="{{ doctor.id }}" required>
+                        <button type="submit" class="btn btn-success">Submit Request</button>
+                    </form>
+                </div>
             </div>
+            {% endfor %}
         </div>
 
         <!-- Modal for Coming Soon -->
