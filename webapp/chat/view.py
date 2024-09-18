@@ -31,7 +31,7 @@ def my_doctor():
     if request.method == 'POST':
         phone_number = request.form.get('videoCallID')
         doctor_id = request.form.get('doctorId')
-        msg = Message.query.filter_by(sender_id=current_user.id, receiver_id=doctor_id).one()
+        msg = Message.query.filter_by(sender_id=current_user.id, receiver_id=doctor_id).first()
         # if the user already send a message update just the number
         if msg:
             msg.phone_number= phone_number
@@ -41,7 +41,6 @@ def my_doctor():
         db.session.commit()
         check = 1
     if check:
-        flash("whatsapp number sended", category="success")
         check = 0
     return render_template('patient_home.html', doctors=doctors, specialties=specialties)
 
