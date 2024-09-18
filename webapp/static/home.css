@@ -19,7 +19,7 @@ body {
     font-weight: 500;
     margin-left: 20px;
 }
-a4eeb3
+
 .nav-link:hover {
     color: #28a745;
 }
@@ -77,9 +77,10 @@ a4eeb3
 }
 
 .about-doctors-section img {
-    width: 100%;
+    width: 80%;
     height: auto;
     border-radius: 8px;
+    padding: 10px;
 }
 
 .about-doctors-section p {

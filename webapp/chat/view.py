@@ -1,4 +1,4 @@
-from flask import render_template, request, jsonify, flash
+from flask import render_template, request, flash
 from flask_login import login_required, current_user
 from flask import Blueprint
 from flask_socketio import emit, join_room
@@ -24,7 +24,7 @@ def my_doctor():
         User.username,
         User.specialty,
         User.bio,
-        # User.is_available  # Assuming you have a field for availability
+        # User.is_available  # Assuming Ahed have a field for availability
     ).join(User.roles).filter(Role.name == 'doctor').all()
     check = 0
     specialties = list(set(doctor.specialty for doctor in doctors))
