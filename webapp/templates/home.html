@@ -45,7 +45,7 @@ Experience healthcare like never before with MedifyCare. Your health journey sta
     <div class="row">
         {% for doctor in doctors %}
         <div class="col-md-4">
-            <img src="../static/images/{{ 'doc1.png' if loop.index % 2 == 1 else 'doc2.jpg' }}" class="card-img-top" alt="Doctor picture">
+            <img src="../static/images/{{ doctor.image_filename if doctor.image_filename else ('doc1.png' if loop.index % 2 == 1 else 'doc2.jpg') }}" class="card-img-top" alt="Doctor picture">
             <h5 class="card-title">{{ doctor.username }}</h5>
             <p class="card-text">Medical Field: {{ doctor.specialty }}</p>
             <p class="card-text">Experice: {{ doctor.bio }}</p>
