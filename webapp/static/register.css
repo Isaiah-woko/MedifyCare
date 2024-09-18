@@ -31,16 +31,12 @@ body {
 .wrapper label {
 	padding: 5px 5px;
 }
-.wrapper .input-box, .custom_select, .profile-picture {
+.wrapper .input-box, .custom_select {
     position: relative;
     width: 100%;
     height: 50px;
     margin: 10px 0;
     padding: 10px;
-}
-
-.input-box input::placeholder {
-    color: rgb(58, 58, 180);
 }
 
 .input-box input {
