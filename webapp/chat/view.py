@@ -34,7 +34,7 @@ def my_doctor():
         msg = Message.query.filter_by(sender_id=current_user.id, receiver_id=doctor_id).first()
         # if the user already send a message update just the number
         if msg:
-            msg.phone_number= phone_number
+            msg.phone_number = phone_number
         else:
             msg = Message(sender_id=current_user.id, receiver_id=doctor_id, phone_number=phone_number)
         db.session.add(msg)
