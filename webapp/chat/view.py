@@ -27,13 +27,6 @@ def my_doctor():
         # User.is_available  # Assuming Ahed have a field for availability
     ).join(User.roles).filter(Role.name == 'doctor').all()
     specialties = list(set(doctor.specialty for doctor in doctors))
-    if request.method == 'POST':
-        phone_number = request.form.get('videoCallID')
-        doctor_id = request.form.get('doctorId')
-        msg = Message(sender_id=current_user.id, receiver_id=doctor_id, phone_number=phone_number)
-        db.session.add(msg)
-        db.session.commit()
-        flash("whatsapp number sent", category="success")
     return render_template('patient_home.html', doctors=doctors, specialties=specialties)
 
 

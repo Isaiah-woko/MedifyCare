@@ -4,14 +4,14 @@ from webapp import create_app
 from webapp import db
 from webapp.auth.models import User, Role
 from webapp.auth import bcrypt
-from config import DevConfig
+from config import ProdConfig
 
 
 logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 logging.getLogger().setLevel(logging.DEBUG)
 
 log = logging.getLogger(__name__)
-app = create_app(DevConfig)
+app = create_app(ProdConfig)
 app.app_context().push()
 
 

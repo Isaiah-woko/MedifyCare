@@ -18,12 +18,7 @@
             <div class="patient-card">
                 <img src="../static/images/{{ 'doc1.png' if loop.index % 2 == 1 else 'doc2.jpg' }}" class="card-img-top" alt="Doctor picture">
                 <h3>{{ message.sender.username }}</h3>
-                {% if message.content %}
                 <a href="{{ url_for('chat.view_patient_messages', username=message.sender.username) }}" class="view-messages">View Messages</a>
-                {% endif %} 
-                {% if message.phone_number %}
-                <a href="#" class="view-messages">Video Call request on: {{ message.phone_number }}</a>
-                {% endif %}
             </div>
             {% endfor %}
         </div>
