@@ -8,7 +8,12 @@ class Config(object):
 
 class ProdConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+    # setup mysql
+    'SQLALCHEMY_DATABASE_URI' = 'mysql+pymysql://root:your_password@localhost/books_db'
+    'MYSQL_HOST' = 'localhost'
+    'MYSQL_USER' = 'root'
+    'MYSQL_PASSWORD' = ''
+    'MYSQL_DB' = 'medifycare'
 
 class DevConfig(Config):
     DEBUG = True
