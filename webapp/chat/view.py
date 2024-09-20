@@ -26,14 +26,22 @@ def my_doctor():
         User.bio,
         # User.is_available  # Assuming Ahed have a field for availability
     ).join(User.roles).filter(Role.name == 'doctor').all()
+    check = 0
     specialties = list(set(doctor.specialty for doctor in doctors))
     if request.method == 'POST':
         phone_number = request.form.get('videoCallID')
         doctor_id = request.form.get('doctorId')
-        msg = Message(sender_id=current_user.id, receiver_id=doctor_id, phone_number=phone_number)
+        msg = Message.query.filter_by(sender_id=current_user.id, receiver_id=doctor_id).first()
+        # if the user already send a message update just the number
+        if msg:
+            msg.phone_number = phone_number
+        else:
+            msg = Message(sender_id=current_user.id, receiver_id=doctor_id, phone_number=phone_number)
         db.session.add(msg)
         db.session.commit()
-        flash("whatsapp number sent", category="success")
+        check = 1
+    if check:
+        check = 0
     return render_template('patient_home.html', doctors=doctors, specialties=specialties)
 
 
@@ -60,7 +68,18 @@ def my_patients():
         .filter(Role.name == 'patient')\
         .distinct().all()
 
-    return render_template('doc_home.html', messages=messages)
+    # For each patient, fetch the first message they sent
+    patient_data = []
+    for patient in patients:
+        first_message = Message.query.filter_by(sender_id=patient.id, receiver_id=current_user.id)\
+                                     .order_by(Message.timestamp.asc()).first()
+
+        patient_data.append({
+            'patient': patient,
+            'first_message': first_message
+        })
+
+    return render_template('doc_home.html', patient_data=patient_data)
 
 
 @chat_blueprint.route('/patient/<username>', methods=['GET'])

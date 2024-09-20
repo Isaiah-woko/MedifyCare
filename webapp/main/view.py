@@ -10,6 +10,7 @@ main_blueprint = Blueprint(
 		)
 
 
+# the home adddress
 @main_blueprint.route('/')
 def index():
 	doctors = db.session.query(
@@ -20,5 +21,4 @@ def index():
         # User.is_available  # Assuming you have a field for availability
     ).join(User.roles).filter(Role.name == 'doctor').all()
 
-	specialties = list(set(doctor.specialty for doctor in doctors))
 	return render_template('home.html',doctors= doctors)	

@@ -18,11 +18,13 @@
             <div id="chat-history" class="chat-history">
                 <!-- Display old messages -->
                 {% for message in messages %}
-                    <div class="message-container">
-                        <p class="message {{ 'current-user' if message.sender_id == current_user.id else 'other-person' }}">
-                            <strong>{{ 'You' if message.sender_id == current_user.id else doctor.username }}:</strong> {{ message.content }}
-                        </p>
-                    </div>
+                    {% if message.content is not none %}
+                        <div class="message-container">
+                            <p class="message {{ 'current-user' if message.sender_id == current_user.id else 'other-person' }}">
+                                <strong>{{ 'You' if message.sender_id == current_user.id else doctor.username }}:</strong> {{ message.content }}
+                            </p>
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
             <div class="chat-input">
