@@ -68,7 +68,18 @@ def my_patients():
         .filter(Role.name == 'patient')\
         .distinct().all()
 
-    return render_template('doc_home.html', messages=messages)
+    # For each patient, fetch the first message they sent
+    patient_data = []
+    for patient in patients:
+        first_message = Message.query.filter_by(sender_id=patient.id, receiver_id=current_user.id)\
+                                     .order_by(Message.timestamp.asc()).first()
+
+        patient_data.append({
+            'patient': patient,
+            'first_message': first_message
+        })
+
+    return render_template('doc_home.html', patient_data=patient_data)
 
 
 @chat_blueprint.route('/patient/<username>', methods=['GET'])
