@@ -1,102 +1,105 @@
+/* Global Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #5D9CEC, #48C9B0);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: white;
-    background-size: cover;
-    background-position: center;
 }
 
+/* Form Wrapper */
 .wrapper {
-    margin-top: 20px;
-    padding: 40px 20px;
-    background-color: #a4eeb3;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 100%;
 }
 
-.wrapper h1 {
-    font-size: 36px;
+/* Form Styling */
+form h1 {
     text-align: center;
+    margin-bottom: 20px;
+    color: #34495e; /* Dark blue */
+    font-size: 24px;
 }
 
-.wrapper label {
-	padding: 5px 5px;
-}
-.wrapper .input-box, .custom_select {
+.input-box {
     position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 10px 0;
-    padding: 10px;
+    margin-bottom: 20px;
 }
 
 .input-box input {
     width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
+    padding: 12px 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
     outline: none;
-    border: 2px solid rgba(250, 250, 250, .8);
-    border-radius: 40px;
     font-size: 16px;
-    color: black;
-    padding: 20px 45px 20px 20px;
+    transition: border 0.3s ease;
+}
+
+.input-box input:focus {
+    border-color: #5D9CEC; /* Soft blue */
 }
 
 .input-box i {
     position: absolute;
-    right: 20px;
-    top: 80%;
-    transform: translate(-50%);
-    font-size: 20px;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #5D9CEC;
 }
 
-.wrapper .button {
-    width: 100%;
-    height: 30px;
-    background: rgb(58, 58, 180);
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px gray;
+.input-box .bx-show {
+    right: 10px;
     cursor: pointer;
-    font-size: 16px;
-    color: azure;
-    font-weight: 600;
 }
 
-.wrapper #role {
-	width: 100%;
-        height: 100%;
-        border: none;
-	outline: none;
-	background: transparent;
-        border: 2px solid rgba(250, 250, 250, .8);
-        border-radius: 40px;
-        font-size: 16px;
-        color: black;
-        padding: 20px 40px 10px 10px;
-	display: inline;
+/* Custom Select */
+.custom-select {
+    margin-bottom: 20px;
 }
-.image {
-	width: 100%;
-        height: 100%;
-        border: none;
-        outline: none;
-        background: transparent;
-        border: 2px solid rgba(250, 250, 250, .8);
-        border-radius: 40px;
-        font-size: 16px;
-        color: black;
-        padding: 20px 40px 10px 10px;
-        display: inline;
+
+.custom-select select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #34495e;
+}
+
+/* Submit Button */
+.button {
+    width: 100%;
+    padding: 12px;
+    background-color: #27AE60; /* Bright green */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #1A8C4F;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .wrapper {
+        width: 90%;
+    }
 }
