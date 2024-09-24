@@ -21,4 +21,6 @@ def create_app(object_name):
     auth_create_module(app)
     chat_create_module(app)
     payment_create_module(app)
+    with app.app_context():
+        db.create_all()
     return app
