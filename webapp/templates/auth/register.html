@@ -15,8 +15,8 @@
             <h1>Register</h1>
             
             <div class="input-box">
-                {{ form.username.label }} <span style="color: red; font-weight: bold;">*</span>
-                {{ form.username(class_='form-control') }}
+                {{ form.username(class_='form-control', placeholder='username') }}
+                <span style="color: red; font-weight: bold;">*</span>
                 <i class='bx bxs-user'></i>
                 {% for error in form.username.errors %}
                     <span style="color: red;">[{{ error }}]</span>
@@ -24,8 +24,8 @@
             </div>
             
             <div class="input-box">
-                {{ form.password.label }} <span style="color: red; font-weight: bold;">*</span>
-                {{ form.password(class_='form-control') }}
+                {{ form.password(class_='form-control', placeholder='Password') }}
+                <span style="color: red; font-weight: bold;">*</span>
                 <i class='bx bxs-lock-alt' id="lockIcon" style="cursor: pointer;"></i>
                 <i class='bx bx-show' id="togglePassword" style="display: none; cursor: pointer;"></i>
                 {% for error in form.password.errors %}
@@ -33,9 +33,10 @@
                 {% endfor %}
             </div>
 
+            
             <div class="input-box">
-                {{ form.confirm.label }} <span style="color: red; font-weight: bold;">*</span>
-                {{ form.confirm(class_='form-control') }}
+                {{ form.confirm(class_='form-control', placeholder='Re-enter Password') }}
+                <span style="color: red; font-weight: bold;">*</span>
                 <i class='bx bxs-lock-alt' id="lockIcon" style="cursor: pointer;"></i>
                 <i class='bx bx-show' id="togglePassword" style="display: none; cursor: pointer;"></i>
                 {% for error in form.confirm.errors %}
@@ -52,6 +53,9 @@
             </div>
 
             <input class="button" type="submit" value="Register">
+            <div class="register-link"></div>
+                <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login</a></p>
+            </div>
         </form>
     </div>
 

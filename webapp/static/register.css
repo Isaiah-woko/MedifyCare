@@ -55,7 +55,7 @@ form h1 {
 
 .input-box i {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 10px;
     transform: translateY(-50%);
     color: #5D9CEC;
@@ -64,6 +64,19 @@ form h1 {
 .input-box .bx-show {
     right: 10px;
     cursor: pointer;
+}
+
+.register-link {
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #5D9CEC;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
 }
 
 /* Custom Select */

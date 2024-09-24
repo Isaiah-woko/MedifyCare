@@ -21,4 +21,4 @@ def index():
         # User.is_available  # Assuming you have a field for availability
     ).join(User.roles).filter(Role.name == 'doctor').all()
 
-	return render_template('home.html',doctors= doctors)	
+	return render_template('home.html',doctors= doctors)
