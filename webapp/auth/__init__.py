@@ -1,6 +1,7 @@
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_login import AnonymousUserMixin
+from flask_dance.contrib.facebook import make_facebook_blueprint, facebook
 
 
 
@@ -10,6 +11,7 @@ login_manager.login_view = "auth.login"
 login_manager.session_protection ="strong"
 login_manager.login_message = "Please login to access this page"
 login_manager.login_message_category = "info"
+
 
 class BlogAnonymous(AnonymousUserMixin):
     def __init__(self):
@@ -22,6 +24,11 @@ def load_user(userid):
 
 # create the auth
 def auth_create_module(app,**kwargs):
+    facebook_blueprint = make_facebook_blueprint(
+    client_id=app.config.get("FACEBOOK_CLIENT_ID"),
+    client_secret=app.config.get("FACEBOOK_CLIENT_SECRET"),
+    )
+    app.register_blueprint(facebook_blueprint, url_prefix="/auth/login")
     bcrypt.init_app(app)
     login_manager.init_app(app)
     from .view import auth_blueprint
