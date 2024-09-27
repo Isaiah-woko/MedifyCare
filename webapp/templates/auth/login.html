@@ -40,6 +40,10 @@
             <div class="remember-forgot">
                 <label><input type="checkbox" name="remember_me"> Remember Me</label>
             </div>
+            <div class="input-box"></div>
+                <br>
+                <a href="{{ url_for('facebook.login') }}">Register/Login With Facebook</a>
+            </div>
             <input class="btn" type="submit" value="Sign In">
             <div class="register-link">
                 <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
