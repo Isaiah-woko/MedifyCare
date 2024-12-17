@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consult a Doctor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='patient_home.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Consult a Doctor</h1>
+        <p>Get expert medical advice from our team of specialists</p>
+    </header>
+
+    <section class="doctor-selection">
+        <h2>Choose a Doctor</h2>
+        <div class="filter-search">
+            <input type="text" id="search-input" placeholder="Search for a doctor...">
+            <select id="filter-select">
+                <option value="">Filter by Medical Field</option>
+                {% for specialty in specialties %}
+                    <option value="{{ specialty }}">{{ specialty }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="doctor-list">
+            {% for doctor in doctors %}
+            <div class="doctor-card" data-specialty="{{ doctor.specialty }}">
+                <img src="../static/images/{{ 'doc1.png' if loop.index % 2 == 1 else 'doc2.jpg' }}" class="card-img-top" alt="Doctor picture">
+                <h3>{{ doctor.username }}</h3>
+                <p>Medical Field: {{ doctor.specialty }}</p>
+                <p>{{ doctor.bio }}</p>
+                <span class="availability {% if doctor.is_available %}online{% else %}offline{% endif %}">
+                    {% if doctor.is_available %}Available{% else %}Offline{% endif %}
+                </span>            
+                <a href="{{ url_for('chat.consult_doc', username=doctor.username) }}" class="click-btn">Chat</a>
+
+                <button class="videoCallRequestBtn click-btn" data-doctor-id="{{ doctor.id }}">Request Video Call</button>
+                <button class="click-btn" id="schedule-btn">Schedule Visit</button>
+            </div>
+            <!-- Modal for Video Call Request -->
+            <div id="videoCallModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" data-modal="videoCallModal">&times;</span>
+                    <h2>Request a Video Call</h2>
+                    <form method="POST" enctype="multipart/form-data" id="videoCallForm">
+                        <label for="videoCallID">Enter your WhatsApp Number or Video Call ID:</label>
+                        <input type="text" id="videoCallID" name="videoCallID" required>
+                        <input type="hidden" id="doctorId" name="doctorId" value="{{ doctor.id }}" required>
+                        <button type="submit" class="btn btn-success">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Modal for Coming Soon -->
+        <div id="comingSoonModal" class="modal">
+            <div class="modal-content">
+                <span class="close" data-modal="comingSoonModal">&times;</span>
+                <h2>Coming Soon</h2>
+                <p>We are working hard to bring you this feature. Stay tuned!</p>
+            </div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='js/patient_home.js') }}" defer></script>
+</body>
+</html>

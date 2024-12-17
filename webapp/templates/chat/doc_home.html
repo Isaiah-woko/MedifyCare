@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Patients</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='doc_home.css') }}">
+</head>
+<body>
+    <header>
+        <h1>My Patients</h1> 
+    </header>
+
+    <section class="patient-list">
+        <h2>Patients Who Have Messaged You / Requested A Video Call</h2>
+        <div class="patient-cards">
+            {% for data in patient_data %}
+            <div class="patient-card">
+                <img src="../static/images/{{ 'doc1.png' if loop.index % 2 == 1 else 'doc2.jpg' }}" class="card-img-top" alt="Doctor picture">
+                <h3>{{ data.patient.username }}</h3>
+                
+                {% if data.first_message and data.first_message.content %}
+                <a href="{{ url_for('chat.view_patient_messages', username=data.patient.username) }}" class="view-messages">View Messages</a>
+                {% endif %}
+                
+                {% if data.first_message and data.first_message.phone_number %}
+                <a href="#" class="view-messages">Video Call request on: {{ data.first_message.phone_number }}</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
