@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+<!-- Services Section -->
+<div class="services-section container">                                                                                             <p>Welcome to MedifyCare, where your well-being is our top priority. Our innovative web application connects you with essential healthcare services at your fingertips, ensuring that you can access quality medical care anytime, anywhere.                                                                                                                                                                   With MedifyCare, you can engage in text chat consultations with experienced doctors, receiving prompt medical advice and guidance right from the comfort of your own space. Need a more personalized touch? Our platform also facilitates seamless video calls with trusted healthcare professionals, allowing for face-to-face interactions that bridge the gap between you and your doctor.                                                                                                                                                       But that's not all. MedifyCare goes the extra mile by offering the unique feature of requesting a doctor to come to your home. Whether it's for a routine check-up, specialized treatment, or urgent medical attention, our app simplifies the process of getting the care you need, exactly when you need it.
+
+Experience healthcare like never before with MedifyCare. Your health journey starts here.</p>
+</div>
+<div class="services-section container">
+    <h2>Our Services</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../static/images/service1.png" class="card-img-top" alt="Home Care Service">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="#">Home care service</a></h5>
+                    <p class="card-text">Doctor Comes Home</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../static/images/service2.png" class="card-img-top" alt="Online Consultation">
+                <div class="card-body">
+			<h5 class="card-title"><a href="#">Online medical consultation</a></h5>
+                    <p class="card-text">Video consultation with a doctor</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <img src="../static/images/service3.png" class="card-img-top" alt="Ask the Doctor">
+                <div class="card-body">
+                    <h5 class="card-title"><a href="#">Ask the doctor</a></h5>
+                    <p class="card-text">Chat with a doctor</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About Doctors Section -->
+<div class="about-doctors-section container">
+    <h2>Know More About Our Doctors</h2>
+    <div class="row">
+        {% for doctor in doctors %}
+        <div class="col-md-4">
+            <img src="../static/images/{{ doctor.image_filename if doctor.image_filename else ('doc1.png' if loop.index % 2 == 1 else 'doc2.jpg') }}" class="card-img-top" alt="Doctor picture">
+            <h5 class="card-title">{{ doctor.username }}</h5>
+            <p class="card-text">Medical Field: {{ doctor.specialty }}</p>
+            <p class="card-text">Experice: {{ doctor.bio }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
