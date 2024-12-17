@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lan="en">
+<head>
+    <meta charset="UTf-8">
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedifyCare</title>
+    <link rel="stylesheet" href="../../static/register.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="wrapper">
+            <form method="POST" action="{{ url_for('.register') }}" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <h1>Register</h1>
+                <div class="input-box">
+                    {{ form.username.label }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ form.username(class_='form-control') }}
+		    <i class='bx bxs-user'></i>
+                    {% for error in form.username.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="input-box">
+                    {{ form.password.label }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ form.password(class_='form-control') }}
+		    <i class='bx bxs-lock-alt'></i>
+                    {% for error in form.password.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="input-box">
+                    {{ form.confirm.label }} <span style="color: red; font-weight: bold;">*</span>
+                    {{ form.confirm(class_='form-control') }}
+		    <i class='bx bxs-lock-alt'></i>
+                    {% for error in form.confirm.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="custom-select">
+		    <br>
+                    {{ form.role.label }} <span style="color: red; font-weight: bold;">*</span><br>
+                    {{ form.role(id='role') }}<br>
+                </div>
+                <br>
+                <div class="input-box">
+                    {{ form.specialty.label }} if you are a doctor<br>
+                    {{ form.specialty(size=32) }}<br>
+                    {% for error in form.specialty.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="input-box">
+                    {{ form.bio.label }} if you are a doctor<br>
+                    {{ form.bio(size=32) }}<br>
+                    {% for error in form.bio.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <br>
+                <div class="input-box">
+                    {{ form.image.label }}<br>
+                    {{ form.image }}<br>
+                    {% for error in form.image.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="input-box">
+                    <br>
+                    <a style="align-items: center;" href="{{ url_for('facebook.login') }}">Register/Login With Facebook</a>
+                </div>
+                <br>
+                <br>
+                
+                <input class="button" type="submit" value="Register">
+            </form>
+    </div>
+</body>    
+</html>
