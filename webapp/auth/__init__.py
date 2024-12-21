@@ -40,19 +40,11 @@ def auth_create_module(app,**kwargs):
     login_manager.init_app(app)
     from .view import auth_blueprint
     app.register_blueprint(auth_blueprint)
-    facebook_blueprint = make_facebook_blueprint(
-    client_id=app.config.get("FACEBOOK_CLIENT_ID"),
-    client_secret=app.config.get("FACEBOOK_CLIENT_SECRET"),
-    )
-    app.register_blueprint(facebook_blueprint, url_prefix="/auth/login")
 
 @oauth_authorized.connect
 def logged_in(blueprint, token):
     ## info it just login without password just by adding the username
     from .models import db, User
-    if blueprint.name == 'facebook':
-        resp = facebook.get("/me")
-        username = resp.json()['name']
     user = User.query.filter_by(username=username).first()
     if not user:
         user = User()
