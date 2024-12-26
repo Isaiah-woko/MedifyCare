@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm as Form
 from flask_wtf import RecaptchaField
-from wtforms import StringField, PasswordField, BooleanField, SelectField
-from wtforms.validators import DataRequired, Length, EqualTo, URL
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField
+from wtforms.validators import DataRequired, Length, EqualTo, URL, Email
 from .models import User, Role
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.utils import secure_filename
@@ -14,6 +14,7 @@ def allowed_file(filename):
 # login form and validater
 class LoginForm(Form):
     username = StringField('Username', [DataRequired(), Length(max=255)])
+    email = StringField('Email', [DataRequired()])
     password = PasswordField('Password', [DataRequired()])
     remember = BooleanField("Remember Me")
 
@@ -41,6 +42,7 @@ class LoginForm(Form):
 
 class RegisterForm(Form):
     username = StringField('Username', validators=[DataRequired(), Length(max=255)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm = PasswordField('Confirm Password', validators=[
         DataRequired(),
@@ -83,3 +85,18 @@ class RegisterForm(Form):
             return False
 
         return True
+
+
+class ResetPasswordRequestForm(Form):
+    '''form for request to change the password'''
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+
+class ResetPasswordForm(Form):
+    '''Rest passwprd form'''
+    password = PasswordField('New Password', validators=[DataRequired()])
+    password2 = PasswordField(
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')]
+    )
+    submit = SubmitField('Confirm Password Reset')

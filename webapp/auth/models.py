@@ -1,5 +1,7 @@
 from . import bcrypt, AnonymousUserMixin
 from .. import db
+from itsdangerous import URLSafeTimedSerializer
+from flask import current_app
 
 # the junction table for many-many relationship between (user, role)
 roles = db.Table(
@@ -12,6 +14,7 @@ roles = db.Table(
 class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(255), nullable=False, index=True, unique=True)
+    email = db.Column(db.String(255), nullable=False, unique=True)
     password = db.Column(db.String(255))
     specialty = db.Column(db.String(255))
     activetion = db.Column(db.Boolean, default=False)
@@ -70,6 +73,30 @@ class User(db.Model):
     @property
     def actived_subscription(self):
         return self.activetion
+
+    def generate_reset_password_token(self):
+        serializer=URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+        return serializer.dumps(self.email, salt=self.password)
+
+    @staticmethod
+    def validate_reset_password_token(token: int, user_id: int):
+        user = db.session.get(User, user_id)
+        if user is None:
+            return None
+        serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
+        try:
+            token_user_email = serializer.loads(
+                token,
+                max_age=current_app.config['RSET_PASS_TOKEN_MAX_AGE'],
+                salt=user.password,
+            )
+        except (BadSignature, SignatureExpired):
+            return None
+        if token_user_email != user.email:
+            return None
+        return user
+
+ 
 # the Role model
 class Role(db.Model):
     id = db.Column(db.Integer(), primary_key=True)

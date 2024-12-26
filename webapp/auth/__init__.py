@@ -1,11 +1,10 @@
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_login import AnonymousUserMixin, login_user
-from flask_dance.contrib.facebook import make_facebook_blueprint, facebook
 from flask_dance.consumer import oauth_authorized
 from flask import flash, redirect, url_for, session, abort
 from flask_dance.contrib.google import make_google_blueprint, google
-
+from flask_mailman import Mail
 """patch google login problem"""
 
 # Patch for Flask-Dance compatibility with Flask >= 2.3
