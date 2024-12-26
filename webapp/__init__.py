@@ -9,7 +9,7 @@ socketio = SocketIO()
 mail = Mail()
 
 def create_app(object_name):
- 
+
     app = Flask(__name__)
     app.config.from_object(object_name)
     app.config['UPLOAD_FOLDER'] = 'webapp/static/images/'

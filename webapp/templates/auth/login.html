@@ -40,6 +40,12 @@
                         {% endfor %}
                     {% endif %}
                 </div>
+                <div class="input-box">
+                    <br>
+                    <a href="{{ url_for('google.login') }}">Register/Login With Google</a>
+                </div>
+                <input class="btn" type="submit" value="Login">
+		<br.
                 <div class="register-link">
                     <p>Don't have an account? <a href="{{ url_for('auth.register') }}"> Register</a></p>
                <a href="{{ url_for('auth.reset_password_request') }}"> Forget password?</a>

@@ -71,6 +71,23 @@
                         <span style="color: red;">[{{ error }}]</span>
                     {% endfor %}
                 </div>
+                <br>
+                <div class="input-box">
+                    {{ form.image.label }}<br>
+                    {{ form.image }}<br>
+                    {% for error in form.image.errors %}
+                        <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <div class="input-box">
+                    <br>
+                </div>
+                <br>
+                <br>
+                <div class="input-box">
+                    <br>
+                    <a href="{{ url_for('google.login') }}">Register/Login With Google</a>
+                </div>
                 <input class="button" type="submit" value="Register">
             </form>
     </div>

@@ -38,6 +38,17 @@ def auth_create_module(app,**kwargs):
     bcrypt.init_app(app)
     login_manager.init_app(app)
     from .view import auth_blueprint
+    google_blueprint = make_google_blueprint(
+        client_id=app.config.get("GOOGLE_CLIENT_ID"),
+        client_secret=app.config.get("GOOGLE_CLIENT_SECRET"),
+        scope=[
+        "openid",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "https://www.googleapis.com/auth/userinfo.profile",
+    ],
+    offline=True
+    )
+    app.register_blueprint(google_blueprint,url_prefix="/auth/login")
     app.register_blueprint(auth_blueprint)
 
 @oauth_authorized.connect
