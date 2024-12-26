@@ -16,7 +16,7 @@ class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'mysql://medifycare:MedifyCare_2024@localhost/medifycare'
     # MYSQL_HOST = 'localhost'
     # MYSQL_USER = 'medifycare'
-    # MYSQL_PASSWORD = 'MedifyCare_2024'
+    # MYSQL_PASSWORD = 'medifycare2023'
     # MYSQL_DB = 'medifycare'
 
 class DevConfig(Config):
