@@ -40,14 +40,10 @@
                         {% endfor %}
                     {% endif %}
                 </div>
-                <div class="input-box">
-                    <br>
-                    <a href="{{ url_for('facebook.login') }}">Register/Login With Facebook</a>
-                </div>
-                <input class="btn" type="submit" value="Login">
                 <div class="register-link">
                     <p>Don't have an account? <a href="{{ url_for('auth.register') }}"> Register</a></p>
-                </div>
+               <a href="{{ url_for('auth.reset_password_request') }}"> Forget password?</a>
+		</div>
             </form>
     </div>
 </body>    
