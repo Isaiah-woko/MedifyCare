@@ -1,0 +1,144 @@
+
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5ddd5; /* Light gray background */
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #075e54; /* WhatsApp green */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+header p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Chat section styles */
+.chat-section {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-image: url('/static/images/doctor_chat.png');
+    background-size: cover; /* This ensures the image covers the entire area */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 80vh; /* Full height of viewport minus header */
+}
+
+.chat-window {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Message container to manage alignment */
+.message-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+/* Message bubble styles */
+.message {
+    padding: 10px;
+    border-radius: 20px; /* Rounded bubbles */
+    max-width: 70%; /* Adjusted max-width for better appearance */
+    position: relative; /* For positioning timestamp */
+}
+
+.message.current-user {
+    align-self: flex-end; /* Align to the right */
+    background-color: #dcf8c6; /* Light green for sender */
+    text-align: right;
+
+    margin-bottom: 10px;
+}
+
+.message.other-person {
+    align-self: flex-start; /* Align to the left */
+    background-color: #ffffff; /* White for receiver */
+    text-align: left;
+    color: black
+}
+
+
+/* Input field styling */
+.chat-input {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    position: fixed;   
+    bottom: 0;        
+    left: 0;
+    width: 99%;      
+    z-index: 1000;     
+}
+
+
+.chat-input input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #666;
+}
+
+.icon-btn:hover {
+    color: #333;
+}
+
+#file-input {
+    display: none;
+}
+
+
+#message {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px; /* Rounded input field */
+    font-size: 16px;
+}
+
+#send-btn {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px; /* Rounded button */
+    background: #075e54; /* WhatsApp green */
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#send-btn:hover {
+    background: #128c7e; /* Darker green on hover */
+}
