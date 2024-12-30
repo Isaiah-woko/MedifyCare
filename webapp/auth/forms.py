@@ -26,14 +26,14 @@ class LoginForm(Form):
             return False
 
         # Does our user exist
-        user = User.query.filter_by(username=self.username.data).first()
+        user = User.query.filter_by(email=self.email.data).first()
         if not user:
-            self.username.errors.append('Invalid username or password')
+            self.email.errors.append('Invalid username or password')
             return False
 
         # Do the passwords match
         if not user.check_password(self.password.data):
-            self.username.errors.append('Invalid password')
+            self.email.errors.append('Invalid password')
             return False
 
         return True
@@ -79,9 +79,9 @@ class RegisterForm(Form):
                 self.image.errors.append('Invalid image format')
                 return False
         # Custom validation: Check if the username already exists
-        user = User.query.filter_by(username=self.username.data).first()
+        user = User.query.filter_by(email=self.email.data).first()
         if user:
-            self.username.errors.append("User with that name already exists")
+            self.email.errors.append("User with that email already exists")
             return False
 
         return True

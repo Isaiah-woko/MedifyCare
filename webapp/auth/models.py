@@ -1,7 +1,9 @@
 from . import bcrypt, AnonymousUserMixin
 from .. import db
-from itsdangerous import URLSafeTimedSerializer
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 from flask import current_app
+import hashlib
+import uuid
 
 # the junction table for many-many relationship between (user, role)
 roles = db.Table(
@@ -20,6 +22,7 @@ class User(db.Model):
     activetion = db.Column(db.Boolean, default=False)
     bio = db.Column(db.String(255))
     image_filename = db.Column(db.String(150))
+    confirmed_at = db.Column(db.DateTime())
     sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy=True)
     received_messages = db.relationship('Message', foreign_keys='Message.receiver_id', backref='receiver', lazy=True)
     roles = db.relationship(
@@ -75,25 +78,25 @@ class User(db.Model):
         return self.activetion
 
     def generate_reset_password_token(self):
-        serializer=URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
-        return serializer.dumps(self.email, salt=self.password)
+        salt = bcrypt.generate_password_hash(uuid.uuid4().hex).decode('utf-8')
+        serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+        return serializer.dumps(self.email, salt=salt)
 
     @staticmethod
-    def validate_reset_password_token(token: int, user_id: int):
-        user = db.session.get(User, user_id)
-        if user is None:
+    def validate_reset_password_token(token, user_id):
+        user = User.query.get(user_id)
+        if not user:
             return None
         serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
         try:
-            token_user_email = serializer.loads(
+             token_user_email = serializer.loads(
                 token,
-                max_age=current_app.config['RSET_PASS_TOKEN_MAX_AGE'],
-                salt=user.password,
-            )
+                max_age=current_app.config['RSET_PASS_TOKEN_MAX_AGE'])
         except (BadSignature, SignatureExpired):
             return None
         if token_user_email != user.email:
             return None
+
         return user
 
  

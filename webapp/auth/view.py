@@ -8,10 +8,13 @@ from .models import db, User, Role
 from .forms import (LoginForm, RegisterForm,
                     ResetPasswordRequestForm,
                     ResetPasswordForm)
+from .. import mail
+from .import bcrypt
 from werkzeug.utils import secure_filename
-from sqlalchemy import select
 from flask_mailman import EmailMessage
+from .reset_password_email_content import reset_password_email_html_content
 import os
+
 
 # check if the file uploaded is image with extension
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -102,8 +105,7 @@ def reset_password_request():
         return redirect(url_for('main.index'))
     form = ResetPasswordRequestForm()
     if form.validate_on_submit():
-        user_select = select(User).where(User.email == form.email.data)
-        user = db.session.scalar(user_select)
+        user = User.query.filter_by(email=form.email.data).first()
 
         if user:
             send_reset_password_email(user)
@@ -118,7 +120,6 @@ def reset_password_request():
     )
 
 
-from .reset_password_email_content import (reset_password_email_html_content)
 def send_reset_password_email(user):
     reset_password_url = url_for(
         "auth.reset_password",
@@ -128,13 +129,11 @@ def send_reset_password_email(user):
     )
 
     email_body = render_template_string(
-        reset_password_email_html_content, reset_password_url=reset_password_url
-        )
+        reset_password_email_html_content, reset_password_url=reset_password_url)
     message = EmailMessage(
-        subject="Reset your password",
-        body=email_body,
-        from_email='medifycare24@gmail.com',
-        to=[user.email],
+            subject="Reset your password",
+            body=email_body,
+            to=[user.email]
     )
     message.content_subtype = 'html'
 
@@ -147,16 +146,13 @@ def reset_password(token, user_id):
         return redirect(url_for('main.index'))
     user = User.validate_reset_password_token(token, user_id)
     if not user:
-        return render_template(
-            'reset_password_error.html', title='reset password error'
-            )
+        return render_template('reset_password_error.html', title='reset password error')
     form = ResetPasswordForm()
     if form.validate_on_submit():
-        user.set_password(form.password.data)
+        user.bcrypt.generate_password_hash(form.password.data)
         db.session.commit()
         return render_template(
             "auth/reset_password_seccess.html", title='Rest Password success'
         )
     return render_template(
-            'auth/reset_password.html', title='Reset Password', form=form
-        )
+            'auth/reset_password.html', title='Reset Password', form=form)
