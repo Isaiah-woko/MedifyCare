@@ -32,7 +32,7 @@ auth_blueprint = Blueprint(
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).one()
+        user = User.query.filter_by(email=form.email.data).first()
         login_user(user, remember=form.remember.data)
         flash("You have been logged in.", category="success")
         return redirect(url_for('main.index'))
@@ -57,7 +57,7 @@ def google_authorized():
     # Register or log in the user
     user = User.query.filter_by(email=email).first()
     if user is None:
-        user = User(username=username, email=email)
+        user = User(email=email)
         db.session.add(user)
         db.session.commit()
 
@@ -75,19 +75,19 @@ def logout():
 @auth_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
+    username = None
     if form.validate_on_submit():
-        new_user = User(form.username.data)
-        new_user = User(form.email.data)
+        new_user = User(username=form.username.data, email=form.email.data)
         new_user.set_password(form.password.data)
-        selected_role = Role.query.get(form.role.data)
-        new_user.roles.append(selected_role)
-        new_user.specialty = form.specialty.data
-        new_user.bio = form.bio.data
-        file = form.image.data
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-            new_user.image_filename = filename
+        #selected_role = Role.query.get(form.role.data)
+        #new_user.roles.append(selected_role)
+        #new_user.specialty = form.specialty.data
+        #new_user.bio = form.bio.data
+        #file = form.image.data
+        #if file and allowed_file(file.filename):
+            #filename = secure_filename(file.filename)
+            #file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+            #new_user.image_filename = filename
         db.session.add(new_user)
         db.session.commit()
 
@@ -146,13 +146,13 @@ def reset_password(token, user_id):
         return redirect(url_for('main.index'))
     user = User.validate_reset_password_token(token, user_id)
     if not user:
-        return render_template('reset_password_error.html', title='reset password error')
+        flash('That is an invalid or expired token', 'warning')
+        return redirect(url_for('reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
-        user.bcrypt.generate_password_hash(form.password.data)
+        user.set_password(form.password.data)
         db.session.commit()
-        return render_template(
-            "auth/reset_password_seccess.html", title='Rest Password success'
-        )
+        flash('seccess')
+        return redirect(url_for('.login'))
     return render_template(
             'auth/reset_password.html', title='Reset Password', form=form)

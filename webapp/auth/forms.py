@@ -13,8 +13,9 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 # login form and validater
 class LoginForm(Form):
-    username = StringField('Username', [DataRequired(), Length(max=255)])
-    email = StringField('Email', [DataRequired()])
+    username = StringField('Username', [DataRequired(), Length(max=255)]
+)
+    email = StringField('email', [DataRequired(), Email()])
     password = PasswordField('Password', [DataRequired()])
     remember = BooleanField("Remember Me")
 
@@ -28,12 +29,12 @@ class LoginForm(Form):
         # Does our user exist
         user = User.query.filter_by(email=self.email.data).first()
         if not user:
-            self.email.errors.append('Invalid username or password')
+            self.email.errors.append('Invalid email or password')
             return False
 
         # Do the passwords match
         if not user.check_password(self.password.data):
-            self.email.errors.append('Invalid password')
+            self.password.errors.append('Invalid password')
             return False
 
         return True
@@ -42,13 +43,13 @@ class LoginForm(Form):
 
 class RegisterForm(Form):
     username = StringField('Username', validators=[DataRequired(), Length(max=255)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm = PasswordField('Confirm Password', validators=[
         DataRequired(),
         EqualTo('password', message="Passwords must match")
     ])
-    role = SelectField('Role', choices=[], validators=[DataRequired()])
+    """role = SelectField('Role', choices=[], validators=[DataRequired()])
     specialty = StringField('Specialty')
     bio = StringField('Bio')
     image = FileField('Upload Image')
@@ -56,12 +57,12 @@ class RegisterForm(Form):
         super(RegisterForm, self).__init__(*args, **kwargs)
         # Fetch roles from the database and set choices
         self.role.choices = [(role.id, role.name.capitalize()) for role in Role.query.all()]
-
+    """
     def validate(self, extra_validators=None):
         # Perform standard validation
         if not super(RegisterForm, self).validate():
             return False
-        print("******************************")
+        """print("******************************")
         print("self.image.data : ", self.image.data)
         print("******************************")
         if self.role.data == '1' and (self.specialty.data == "" or self.bio.data == ""):
@@ -78,19 +79,25 @@ class RegisterForm(Form):
             if not allowed_file(filename):
                 self.image.errors.append('Invalid image format')
                 return False
+            """
         # Custom validation: Check if the username already exists
-        user = User.query.filter_by(email=self.email.data).first()
+        user = User.query.filter_by(username=self.username.data).first()
         if user:
-            self.email.errors.append("User with that email already exists")
+            self.username.errors.append("User with that username already exists")
             return False
 
         return True
-
+        
 
 class ResetPasswordRequestForm(Form):
     '''form for request to change the password'''
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('There is no account with that email. you must register first')
 
 
 class ResetPasswordForm(Form):

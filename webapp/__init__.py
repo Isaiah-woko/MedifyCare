@@ -12,12 +12,15 @@ def create_app(object_name):
 
     app = Flask(__name__)
     app.config.from_object(object_name)
+    app.config['SECRET_KEY'] = 'thisismysecretkey'
+    app.config['RSET_PASS_TOKEN_MAX_AGE'] = 3600
     app.config['UPLOAD_FOLDER'] = 'webapp/static/images/'
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USERNAME'] = 'medifycare24@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'mlxc mevq stuk hfoa'
+    app.config['MAIL_DEFAULT_SENDER'] = 'medifycare24@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'mlxcmevqstukhfoa'
 
     db.init_app(app)
     migrate.init_app(app, db)
