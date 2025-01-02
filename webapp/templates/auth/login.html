@@ -14,6 +14,7 @@
             <form method="POST" action="{{ url_for('.login') }}">
                 {{ form.hidden_tag() }}
                 <h1>Login</h1>
+		<br>
                 <div class="input-box">
 			<input type="text" name="username" placeholder="Username">
 			<i class='bx bxs-user'></i>
@@ -23,6 +24,15 @@
                         {% endfor %}
 			{% endif %}
                 </div>
+		<br>
+		<div class="input-box">
+			<input type="text" name="email" placeholder="Email">
+			<i class='bx bxs-user'></i>
+			{% if form.email.errors %}
+			{% for e in form.email.errors %}
+			    <p class="help-block">{{ e }}</p>
+			{% endfor %}
+			{% endif %}
                 <div class="input-box">
                     <input type="password" name="password" placeholder="Password">
 		    <i class='bx bxs-lock-alt'></i>

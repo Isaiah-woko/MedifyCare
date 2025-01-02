@@ -9,7 +9,7 @@ class Config(object):
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USERNAME = 'medifycare24@gmail.com'
-    MAIL_PASSWORD = 'mlxc mevq stuk hfoa'
+    MAIL_PASSWORD = 'mlxcmevqstukhfoa'
 class ProdConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # setup mysql

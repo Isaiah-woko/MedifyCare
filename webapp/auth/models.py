@@ -1,46 +1,50 @@
 from . import bcrypt, AnonymousUserMixin
 from .. import db
-from itsdangerous import URLSafeTimedSerializer
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 from flask import current_app
 
+
 # the junction table for many-many relationship between (user, role)
-roles = db.Table(
+"""roles = db.Table(
     'role_users',
     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
     db.Column('role_id', db.Integer, db.ForeignKey('role.id'))
 )
-
+"""
 # the User model
 class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(255), nullable=False, index=True, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    password = db.Column(db.String(255))
-    specialty = db.Column(db.String(255))
+    username = db.Column(db.String(100), nullable=False, index=True, unique=True)
+    email = db.Column(db.String(108), nullable=False, unique=True)
+    password = db.Column(db.String(100))
+    """specialty = db.Column(db.String(255))
     activetion = db.Column(db.Boolean, default=False)
     bio = db.Column(db.String(255))
     image_filename = db.Column(db.String(150))
-    sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy=True)
+    """
+    confirmed_at = db.Column(db.DateTime())
+    """sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy=True)
     received_messages = db.relationship('Message', foreign_keys='Message.receiver_id', backref='receiver', lazy=True)
     roles = db.relationship(
         'Role',
         secondary=roles,
         backref=db.backref('users', lazy='dynamic')
     )
-
-    def __init__(self, username=""):
+    """
+    def __init__(self,username="",  email=""):
         # you first you make manual defalut role then
         self.username = username
+        self.email = email
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-    def has_role(self, name):
+    """def has_role(self, name):
         for role in self.roles:
             if role.name == name:
                 return True
         return False
-
+    """
     def set_password(self, password):
         self.password = bcrypt.generate_password_hash(password)
 
@@ -75,17 +79,18 @@ class User(db.Model):
         return self.activetion
 
     def generate_reset_password_token(self):
-        serializer=URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+        serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
         return serializer.dumps(self.email, salt=self.password)
 
     @staticmethod
-    def validate_reset_password_token(token: int, user_id: int):
+    def validate_reset_password_token(token: str, user_id: int):
         user = db.session.get(User, user_id)
         if user is None:
             return None
+
         serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
         try:
-            token_user_email = serializer.loads(
+             token_user_email = serializer.loads(
                 token,
                 max_age=current_app.config['RSET_PASS_TOKEN_MAX_AGE'],
                 salt=user.password,
@@ -94,6 +99,7 @@ class User(db.Model):
             return None
         if token_user_email != user.email:
             return None
+
         return user
 
  
