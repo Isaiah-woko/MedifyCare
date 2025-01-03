@@ -1,0 +1,270 @@
+
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+}
+
+header {
+    background-color: #4a90e2;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin: 10px 0 0;
+    font-size: 18px;
+}
+
+/* Doctor Selection Section */
+.doctor-selection {
+    padding: 40px 20px;
+}
+
+.doctor-selection h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.filter-search {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-search input[type="text"],
+.filter-search select {
+    width: 40%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+.filter-search input[type="text"]:focus,
+.filter-search select:focus {
+    border-color: #4a90e2;
+}
+
+.doctor-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Doctor Card Styling */
+.doctor-card {
+    background-color: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.doctor-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.doctor-card h3 {
+    margin: 10px 0;
+    font-size: 20px;
+    color: #2a4d69;;
+}
+
+.doctor-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.availability {
+    display: inline-block;
+    margin: 15px 0;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.online {
+    background-color: #28a745;
+    color: white;
+}
+
+.offline {
+    background-color: #dc3545;
+    color: white;
+}
+
+.click-btn {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    display: block; /* Ensure buttons are on their own lines */
+    margin-top: 10px; /* Add space above each button */
+}
+
+
+.click-btn:hover {
+    background-color: #357ab8;
+}
+
+.click-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5);
+}
+
+
+.hidden { display: none; }
+.modal { display: none; /* Hidden by default */ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); }
+.modal-content { background-color: #fff; margin: 15% auto; padding: 20px; width: 80%; max-width: 500px; }
+.close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close:hover, .close:focus { color: black; text-decoration: none; cursor: pointer; }
+
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75); /* Dark overlay */
+    backdrop-filter: blur(5px); /* Adds a blur to the background */
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    animation: fadeInModal 0.3s ease-in-out;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #333;
+    cursor: pointer;
+}
+
+/* Form Styling */
+#videoCallForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input Styling */
+#videoCallID {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+#videoCallID:focus {
+    border-color: #007BFF; /* Blue border on focus */
+    outline: none;
+}
+
+/* Button Styling */
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chat-section {
+        padding: 20px;
+    }
+
+    .chat-input input[type="text"] {
+        width: calc(100% - 100px);
+    }
+
+    .chat-input button {
+        width: 100px;
+    }
+}

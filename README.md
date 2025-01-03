@@ -84,4 +84,68 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Screenshot
 
 ![MedifyCare Screenshot](pic.png)
-```
+
+## Test plan
+
+### 1. Authentication: Login / Registration
+- Test Setup
+
+    Mock Database: Use a library like pytest-mock, unittest.mock, or factory_boy to create a mock database or mock ORM models (e.g., SQLAlchemy models).
+    Preconditions:
+        Create a mock database with user data for login tests.
+        Ensure the registration process interacts with the mock database.
+
+- Test Cases
+
+    Login: Test a Pre-registered User
+        Precondition: Mock a user with a known email and password in the database.
+        Steps:
+            Send a POST request to the login endpoint with valid credentials.
+            Send a POST request to the login endpoint with invalid credentials.
+        Expected Results:
+            Valid credentials return a success response (e.g., 200 or 302 status).
+            Invalid credentials return an error response (e.g., 401 Unauthorized or 400 Bad Request).
+
+    Register: Test by Registering a New User
+        Precondition: Mock the database to accept new user data.
+        Steps:
+            Send a POST request to the registration endpoint with new user details.
+            Check if the mock database now contains the new user.
+            Attempt to register the same user again.
+        Expected Results:
+            The first registration should return a success response (e.g., 201 Created).
+            Duplicate registration attempts return an error (e.g., 400 Bad Request).
+
+### 2. Chat Functionality
+- Test Setup
+
+    Mock Database:
+        Mock chat messages between doctors and patients using a table or data structure.
+        Use mock objects to simulate real-time message storage and retrieval.
+- Test Cases
+
+    Doctor Can Send a Message
+        Precondition: A logged-in doctor.
+        Steps:
+            Simulate sending a message to the patient.
+            Save the message in the mock database.
+        Expected Results:
+            The message is saved in the mock database under the correct patient-doctor session.
+            The response confirms success (e.g., 200 OK).
+
+    Patient Can Send a Message
+        Precondition: A logged-in patient.
+        Steps:
+            Simulate sending a message to the doctor.
+            Save the message in the mock database.
+        Expected Results:
+            The message is saved in the mock database under the correct patient-doctor session.
+            The response confirms success (e.g., 200 OK).
+
+    Doctor Can See Patient’s Message
+        Precondition: A patient has sent a message to the doctor (saved in the mock database).
+        Steps:
+            Simulate the doctor retrieving messages from the chat endpoint.
+            Verify the retrieved messages.
+        Expected Results:
+            The doctor receives the patient message in the correct order. 

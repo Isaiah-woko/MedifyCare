@@ -1,0 +1,119 @@
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #5D9CEC, #48C9B0);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form Wrapper */
+.wrapper {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    max-width: 100%;
+}
+
+/* Form Styling */
+form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #34495e; /* Dark blue */
+    font-size: 24px;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 12px 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    transition: border 0.3s ease;
+}
+
+.input-box input:focus {
+    border-color: #5D9CEC; /* Soft blue */
+}
+
+.input-box i {
+    position: absolute;
+    top: 40%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #5D9CEC;
+}
+
+.input-box .bx-show {
+    right: 10px;
+    cursor: pointer;
+}
+
+.register-link {
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #5D9CEC;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Custom Select */
+.custom-select {
+    margin-bottom: 20px;
+}
+
+.custom-select select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #34495e;
+}
+
+/* Submit Button */
+.button {
+    width: 100%;
+    padding: 12px;
+    background-color: #27AE60; /* Bright green */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #1A8C4F;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .wrapper {
+        width: 90%;
+    }
+}
