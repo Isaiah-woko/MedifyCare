@@ -36,8 +36,7 @@ def login():
         login_user(user, remember=form.remember.data)
         flash("You have been logged in.", category="success")
         return redirect(url_for('main.index'))
-    else:
-        if request.args.get('google'):
+    elif request.args.get('google'):
             return redirect(url_for('auth.google_login'))
     return render_template('login.html', form=form)
 

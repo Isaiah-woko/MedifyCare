@@ -29,7 +29,7 @@ class LoginForm(Form):
         # Does our user exist
         user = User.query.filter_by(email=self.email.data).first()
         if not user:
-            self.email.errors.append('Invalid email or password')
+            self.email.errors.append('Invalid username or password')
             return False
 
         # Do the passwords match
