@@ -84,10 +84,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Screenshot
 
 ![MedifyCare Screenshot](pic.png)
-```
+
 ## Test plan
 
-## 1. Authentication: Login / Registration
+### 1. Authentication: Login / Registration
 - Test Setup
 
     Mock Database: Use a library like pytest-mock, unittest.mock, or factory_boy to create a mock database or mock ORM models (e.g., SQLAlchemy models).
