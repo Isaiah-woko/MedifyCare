@@ -30,15 +30,14 @@ export default function SignIn() {
     return (
         <>
             <main className="relative grow flex">
-                <div className="w-full bg-slate-100">
+                <div className="w-full bg-light">
                     <div className="h-full flex flex-col justify-center before:min-h-[4rem] md:before:min-h-[5rem] before:flex-1 after:flex-1">
                         <div className="px-4 sm:px-6">
                             <div className="w-full max-w-sm mx-auto">
                                 <div className="py-16 md:py-20">
                                     <div className="mb-8">
-                                        <h1 className="h2 font-uncut-sans text-primary">Welcome Back!</h1>
+                                        <h1 className="h2 font-uncut-sans text-black">Welcome Back!</h1>
                                     </div>
-                                    {/* Form */}
                                     <Formik
                                         initialValues={initialValues}
                                         validationSchema={validationSchema}
@@ -57,7 +56,7 @@ export default function SignIn() {
                                                     <div>
                                                         <div className="flex justify-between">
                                                             <label className="block text-sm text-gray-600 font-medium mb-1" htmlFor="password">Password <span className="text-red-500">*</span></label>
-                                                            <Link className="text-sm font-medium text-blue-500 hover:text-blue-400 ml-2" to="/reset-password">Forget?</Link>
+                                                            <Link className="text-sm font-medium text-secondary hover:text-secondaryLight ml-2" to="/reset-password">Forget?</Link>
                                                         </div>
                                                         <Field id="password" name='password' className="form-input py-2 w-full" type="password" autoComplete="on" required />
                                                         <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
@@ -74,7 +73,7 @@ export default function SignIn() {
                                     <SocialLogin />
                                     <div className="mt-6">
                                         <div className="text-sm text-gray-400">
-                                            Don't you have an account? <Link className="font-medium text-blue-500 hover:text-blue-400" to="/signup">Sign Up</Link>
+                                            Don't you have an account? <Link className="font-medium text-secondary hover:text-secondaryLight" to="/signup">Sign Up</Link>
                                         </div>
                                     </div>
                                 </div>

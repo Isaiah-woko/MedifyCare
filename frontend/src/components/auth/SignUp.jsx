@@ -59,13 +59,13 @@ export default function SignUp() {
     return (
         <>
             <main className="relative grow flex">
-                <div className="w-full bg-slate-100">
+                <div className="w-full bg-light">
                     <div className="h-full flex flex-col justify-center before:min-h-[4rem] md:before:min-h-[5rem] before:flex-1 after:flex-1">
                         <div className="px-4 sm:px-6">
                             <div className="w-full max-w-sm mx-auto">
                                 <div className="py-16 md:py-20">
                                     <div className="mb-8">
-                                        <h1 className="h2 font-uncut-sans text-primary">Sign Up</h1>
+                                        <h1 className="h2 font-uncut-sans text-black">Sign Up</h1>
                                     </div>
                                     {/* Form */}
                                     <Formik
@@ -157,7 +157,7 @@ export default function SignUp() {
                                     </div>
                                     <div className="pt-4 border-t border-primary">
                                         <div className="text-sm text-gray-400">
-                                            Already have an account? <Link className="font-medium text-blue-500 hover:text-blue-400" to="/signin">Sign In</Link>
+                                            Already have an account? <Link className="font-medium text-secondary hover:text-secondaryLight" to="/signin">Sign In</Link>
                                         </div>
                                     </div>
                                 </div>

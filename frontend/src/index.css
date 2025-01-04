@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 ::selection{
-    background: #123C59;
+    background: #2c4256;
     color: #fff;
 }
 *{
     /* scrollbar-width: thin;
-    scrollbar-color: #123C59 #fff; */
+    scrollbar-color: #2c4256 #fff; */
     scrollbar-width: none;
 }
 
@@ -67,7 +67,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-select,
 .form-checkbox,
 .form-radio {
-    @apply bg-gray-100 border border-primary focus:border-amber-500;
+    @apply bg-gray-50 border border-primary focus:border-secondary;
 }
 
 .form-input,
@@ -75,7 +75,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-multiselect,
 .form-select,
 .form-checkbox {
-    @apply rounded-sm;
+    @apply rounded-lg focus:outline-none focus:ring-secondary;
 }
 
 .form-input,

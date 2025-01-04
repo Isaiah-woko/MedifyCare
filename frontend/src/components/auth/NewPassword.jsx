@@ -30,17 +30,15 @@ export default function NewPassword() {
     return (
         <>
             <main className="relative grow flex h-screen">
-                {/* Content */}
-                <div className="w-full bg-slate-100">
+                <div className="w-full bg-light">
                     <div className="h-full flex flex-col justify-center before:min-h-[4rem] md:before:min-h-[5rem] before:flex-1 after:flex-1">
                         <div className="px-4 sm:px-6">
                             <div className="w-full max-w-sm mx-auto">
                                 <div className="py-16 md:py-20">
                                     <div className="mb-8">
-                                        <h1 className="h2 font-uncut-sans mb-4 text-primary">Reset password</h1>
+                                        <h1 className="h2 font-uncut-sans mb-4 text-black">Reset password</h1>
                                         <p className="text-gray-400">Enter your new password.</p>
                                     </div>
-                                    {/* Form */}
                                     <Formik
                                         initialValues={initialValues}
                                         validationSchema={validationSchema}
