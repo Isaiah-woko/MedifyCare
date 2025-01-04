@@ -63,7 +63,7 @@ export default function SignIn() {
                                                     </div>
                                                 </div>
                                                 <div className="mt-6">
-                                                    <button type='submit' className="btn-sm text-white bg-gradient-to-t from-primary to-[#1d5f8f] hover:to-[#1a4d72] w-full shadow-lg group">
+                                                    <button type='submit' className="btn-sm text-white bg-gradient-to-t from-primary to-primaryLight hover:to-primaryDark w-full shadow-lg group">
                                                         Sign In <span className="tracking-normal text-blue-200 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>
                                                     </button>
                                                 </div>

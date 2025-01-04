@@ -28,7 +28,6 @@ export default function ResetPasword() {
     return (
         <>
             <main className="relative grow flex h-screen">
-                {/* Content */}
                 <div className="w-full bg-light">
                     <div className="h-full flex flex-col justify-center before:min-h-[4rem] md:before:min-h-[5rem] before:flex-1 after:flex-1">
                         <div className="px-4 sm:px-6">
@@ -38,7 +37,6 @@ export default function ResetPasword() {
                                         <h1 className="h2 font-uncut-sans mb-4 text-black">Reset password</h1>
                                         <p className="text-gray-400">Enter your email address. If an account exists, you'll receive an email with a password reset link soon.</p>
                                     </div>
-                                    {/* Form */}
                                     <Formik
                                         initialValues={initialValues}
                                         validationSchema={validationSchema}
@@ -53,7 +51,7 @@ export default function ResetPasword() {
                                                     </div>
                                                 </div>
                                                 <div className="mt-6">
-                                                    <button type='submit' className="btn-sm text-white bg-gradient-to-t from-primary to-[#1d5f8f] hover:to-[#1a4d72] w-full shadow-lg group">
+                                                    <button type='submit' className="btn-sm text-white bg-gradient-to-t from-primary to-primaryLight hover:to-primaryDark w-full shadow-lg group">
                                                         Reset Password <span className="tracking-normal text-blue-200 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>
                                                     </button>
                                                 </div>
