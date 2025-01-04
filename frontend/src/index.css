@@ -6,6 +6,11 @@
     background: #123C59;
     color: #fff;
 }
+*{
+    /* scrollbar-width: thin;
+    scrollbar-color: #123C59 #fff; */
+    scrollbar-width: none;
+}
 
 /* Typography */
 .h1 {

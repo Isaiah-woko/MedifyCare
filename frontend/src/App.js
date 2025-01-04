@@ -8,6 +8,8 @@ import 'aos/dist/aos.css'
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import ResetPasword from './components/auth/ResetPasword';
+import NewPassword from './components/auth/NewPassword';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 function App() {
   useEffect(() => {
@@ -19,16 +21,19 @@ function App() {
     })
   })
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path='*' element={<h1>Not Found</h1>} />
-        <Route path='/signin' element={<SignIn />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/reset-password' element={<ResetPasword />} />
-      </Routes>
-    </Router>
+    <>
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path='*' element={<h1>Not Found</h1>} />
+            <Route path='/signin' element={<SignIn />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/reset-password' element={<ResetPasword />} />
+            <Route path='/new-password' element={<NewPassword />} />
+          </Routes>
+        </Router>
+    </>
   );
 }
 

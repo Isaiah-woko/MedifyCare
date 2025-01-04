@@ -5,16 +5,26 @@ import * as Yup from 'yup';
 import axios from 'axios';
 
 const initialValues = {
-    user_name:'',
-    password:'',
+    email: '',
+    password: '',
 }
-const validationSchema = Yup.object({ 
-    user_name: Yup.string().required('User Name is required to login'),
+const validationSchema = Yup.object({
+    email: Yup.string().required('Email is required to login'),
     password: Yup.string().required('Password is required to login'),
 })
-const onSubmit = (values) => {
-    console.log(JSON.stringify(values, null, 2));
-}
+const onSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, values);
+        console.log('Server Response:', response.data);
+        alert('Form submitted successfully!');
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        alert('Error submitting form');
+    } finally {
+        setSubmitting(false);
+        resetForm();
+    }
+};
 
 export default function SignIn() {
     return (
@@ -33,29 +43,33 @@ export default function SignIn() {
                                         initialValues={initialValues}
                                         validationSchema={validationSchema}
                                         onSubmit={onSubmit}
-                                        >
-                                    <Form>
-                                        <div className="space-y-4">
-                                            <div>
-                                                <label className="block text-sm text-gray-600 font-medium mb-1" htmlFor="user_name">User Name <span className="text-red-500">*</span></label>
-                                                <Field id="user_name" name="user_name" className="form-input py-2 w-full" type="text" required />
-                                                <ErrorMessage name="user_name" component="div" className="text-red-500 text-sm" />
-                                            </div>
-                                            <div>
-                                                <div className="flex justify-between">
-                                                    <label className="block text-sm text-gray-600 font-medium mb-1" htmlFor="password">Password <span className="text-red-500">*</span></label>
-                                                    <Link className="text-sm font-medium text-blue-500 hover:text-blue-400 ml-2" to="/reset-password">Forget?</Link>
+                                    >
+                                        {({ isSubmitting }) => (
+                                            <Form>
+                                                <div className="space-y-4">
+                                                    <div>
+                                                        <div>
+                                                            <label className="block text-sm text-gray-600 font-medium mb-1" htmlFor="email">Email <span className="text-red-500">*</span></label>
+                                                            <Field id="email" name='email' className="form-input py-2 w-full" type="email" required />
+                                                        </div>
+                                                        <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
+                                                    </div>
+                                                    <div>
+                                                        <div className="flex justify-between">
+                                                            <label className="block text-sm text-gray-600 font-medium mb-1" htmlFor="password">Password <span className="text-red-500">*</span></label>
+                                                            <Link className="text-sm font-medium text-blue-500 hover:text-blue-400 ml-2" to="/reset-password">Forget?</Link>
+                                                        </div>
+                                                        <Field id="password" name='password' className="form-input py-2 w-full" type="password" autoComplete="on" required />
+                                                        <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
+                                                    </div>
                                                 </div>
-                                                <Field id="password" name='password' className="form-input py-2 w-full" type="password" autoComplete="on" required />
-                                                <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
-                                            </div>
-                                        </div>
-                                        <div className="mt-6">
-                                            <button type='submit' className="btn-sm text-white bg-gradient-to-t from-primary to-[#1d5f8f] hover:to-[#1a4d72] w-full shadow-lg group">
-                                                Sign In <span className="tracking-normal text-blue-200 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>
-                                            </button>
-                                        </div>
-                                    </Form>
+                                                <div className="mt-6">
+                                                    <button type='submit' className="btn-sm text-white bg-gradient-to-t from-primary to-[#1d5f8f] hover:to-[#1a4d72] w-full shadow-lg group">
+                                                        Sign In <span className="tracking-normal text-blue-200 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>
+                                                    </button>
+                                                </div>
+                                            </Form>
+                                        )}
                                     </Formik>
                                     <SocialLogin />
                                     <div className="mt-6">

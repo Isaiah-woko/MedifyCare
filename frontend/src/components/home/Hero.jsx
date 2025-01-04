@@ -6,7 +6,7 @@ export default function Hero() {
         <img
           src="../../assets/images/bg.jpg"
           className="max-w-none object-cover w-full h-full"
-          priority
+          priority="true"
           alt="Hero"
         />
       </div>
