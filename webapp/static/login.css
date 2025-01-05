@@ -1,0 +1,185 @@
+/* Wrapper Styling */
+.wrapper {
+    background: #ffffff; /* White background for a clean look */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 380px;
+    text-align: center;
+    margin: 80px auto;
+    transition: transform 0.3s ease;
+}
+
+.wrapper:hover {
+    transform: translateY(-5px); /* Subtle hover effect */
+}
+
+/* Header Styling */
+h1 {
+    margin-bottom: 20px;
+    color: #2d3e50; /* Dark neutral tone */
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h5 {
+    margin-bottom: 30px;
+    color: #7b8a8b; /* Light gray text for a subtle tone */
+    font-size: 1.1em;
+}
+
+/* Input Fields */
+.input-box {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 14px 45px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 1rem;
+    background: #f9f9f9; /* Light gray background */
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus {
+    border-color: #5c8db5; /* Soft blue for focus */
+    background: #fff;
+    box-shadow: 0 0 5px rgba(92, 141, 181, 0.5); /* Soft glow effect */
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #5c8db5; /* Icon color */
+    font-size: 1.2rem;
+}
+
+/* Help Block Styling */
+.help-block {
+    color: #e74c3c; /* Soft red tone for error messages */
+    font-size: 0.875em;
+    margin-top: 0.5em;
+}
+
+/* Button Styling */
+.btn {
+    background-color: #27ae60 !important; /* Google Blue */
+    color: #fff; /* White text */
+    border: none;
+    margin-top: 15px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(66, 133, 244, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+
+.btn:hover {
+    background-color: #27ae60;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(66, 133, 244, 0.3);
+}
+
+
+/* Registration Link */
+.register-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #2d3e50;
+}
+
+.register-link a {
+    color: #27ae60; /* Green color for the link */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+    color: #1e8449; /* Darker green on hover */
+}
+
+/* Error Messages */
+.error-messages {
+    background-color: #f7c7c7; /* Soft red background for errors */
+    color: #e74c3c; /* Error text color */
+    border: 1px solid #f1a0a0;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-size: 0.9em;
+}
+
+/* Google Sign-In Button */
+.google-signin {
+    margin-top: 20px;
+}
+
+.btn-google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #27ae60; /* Google Blue */
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(66, 133, 244, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-google:hover {
+    background-color: #27ae60;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(66, 133, 244, 0.3);
+}
+
+.google-logo {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+/* Remember Me and Forgot Password (side-by-side) */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.remember-forgot a {
+    color: #27ae60;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    color: #1e8449;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .wrapper {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 12px 18px;
+    }
+
+    .remember-forgot {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

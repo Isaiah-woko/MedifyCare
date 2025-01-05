@@ -22,7 +22,7 @@ class User(db.Model):
     bio = db.Column(db.String(255))
     image_filename = db.Column(db.String(150))
     """
-    confirmed_at = db.Column(db.DateTime())
+    # confirmed_at = db.Column(db.DateTime())
     """sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy=True)
     received_messages = db.relationship('Message', foreign_keys='Message.receiver_id', backref='receiver', lazy=True)
     roles = db.relationship(
