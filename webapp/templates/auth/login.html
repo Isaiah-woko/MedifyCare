@@ -1,66 +1,65 @@
-
 <!DOCTYPE html>
-<html lan="en">
+<html lang="en">
 <head>
-    <meta charset="UTf-8">
-    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MedifyCare</title>
+    <title>MedifyCare - Login</title>
     <link rel="stylesheet" href="../../static/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <div class="wrapper">
-            <form method="POST" action="{{ url_for('.login') }}">
-                {{ form.hidden_tag() }}
-                <h1>Login</h1>
-		<br>
-                <div class="input-box">
-			<input type="text" name="username" placeholder="Username">
-			<i class='bx bxs-user'></i>
-			{% if form.username.errors %}
-                        {% for e in form.username.errors %}
-                            <p class="help-block">{{ e }}</p>
-                        {% endfor %}
-			{% endif %}
+        <form method="POST" action="{{ url_for('.login') }}">
+            {{ form.hidden_tag() }}
+            <h1>Sign In to Your Account</h1>
+            <h5>
+                😊 Let's get you signed in
+            </h5>
+            <div class="input-box">
+                <input type="text" name="username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+                {% if form.username.errors %}
+                    {% for e in form.username.errors %}
+                        <p class="help-block">{{ e }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+	    <div class="input-box">
+		<input type="text" name="email" placeholder="Email" required>
+		<i class='bx bxs-envelope'></i>
+		{% if form.email.errors %}
+		    {% for e in form.email.errors %}
+		    	<p class="help-block">{{ e }}</p>
+		    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="input-box">
+                <input type="password" name="password" placeholder="Password" required id="password">
+                <i class='bx bxs-lock-alt' id="lockIcon" style="cursor: pointer;"></i>
+                <i class='bx bx-show' id="togglePassword" style="display: none; cursor: pointer;"></i>
+                {% if form.password.errors %}
+                    {% for e in form.password.errors %}
+                        <p class="help-block">{{ e }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+
+            <div class="remember-forgot">
+                <label><input type="checkbox" name="remember_me"> Remember Me</label>
+            </div>
+            <div class="input-box"></div>
+                <a href="{{ url_for('google.login') }}">Register/Login With Google</a>
+		<input class="btn" type="submit" value="Sign In">
+            	<div class="register-link">
+                    <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>
+		    <a href="{{ url_for('auth.reset_password_request') }}"> Forget password?</a>
                 </div>
-		<br>
-		<div class="input-box">
-			<input type="text" name="email" placeholder="Email">
-			<i class='bx bxs-user'></i>
-			{% if form.email.errors %}
-			{% for e in form.email.errors %}
-			    <p class="help-block">{{ e }}</p>
-			{% endfor %}
-			{% endif %}
-                <div class="input-box">
-                    <input type="password" name="password" placeholder="Password">
-		    <i class='bx bxs-lock-alt'></i>
-                    {% if form.password.errors %}
-                        {% for e in form.password.errors %}
-                            <p class="help-block">{{ e }}</p>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox" name="remember_me">Remember Me</label>
-                    {% if form.remember.errors %}
-                        {% for e in form.remember.errors %}
-                            <p class="help-block">{{ e }}</p>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-                <div class="input-box">
-                    <br>
-                    <a href="{{ url_for('google.login') }}">Register/Login With Google</a>
-                </div>
-                <input class="btn" type="submit" value="Login">
-		<br.
-                <div class="register-link">
-                    <p>Don't have an account? <a href="{{ url_for('auth.register') }}"> Register</a></p>
-               <a href="{{ url_for('auth.reset_password_request') }}"> Forget password?</a>
-		</div>
-            </form>
+	    </div>
+        </form>
     </div>
-</body>    
+
+    <script src="{{ url_for('static', filename='js/register.js') }}" defer></script>
+</body>
 </html>
