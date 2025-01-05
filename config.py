@@ -10,6 +10,9 @@ class Config(object):
     MAIL_USE_TLS = True
     MAIL_USERNAME = 'medifycare24@gmail.com'
     MAIL_PASSWORD = 'mlxcmevqstukhfoa'
+    GOOGLE_CLIENT_ID=os.environ.get('GOOGLE_CLIENT_ID')
+    GOOGLE_CLIENT_SECRET=os.environ.get('GOOGLE_CLIENT_SECRET')
+
 class ProdConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # setup mysql

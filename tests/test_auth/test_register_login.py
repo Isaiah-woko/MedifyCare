@@ -46,7 +46,7 @@ class TestAppSetup(unittest.TestCase):
         self.assertEqual(user.username, "testuser")
 
     # login
-    def test_login(self):
+    def test_user_login_valid(self):
         # Simulate a login request
         response = self.client.post(
             '/auth/login',
@@ -56,3 +56,27 @@ class TestAppSetup(unittest.TestCase):
         # Check if the redirection is to the 'main.index' route
         with self.app.test_request_context():
             self.assertIn(url_for('main.index'), response.request.path)
+
+    # Test Case: User Login (Invalid Credentials)
+    def test_user_login_invalid(client, init_database):
+        response = client.post('/login', data={
+            'username': 'testuser',
+            'password': 'wrongpassword'
+        }, follow_redirects=True)
+        assert response.status_code == 200
+        self.assertIn(b'Invalid password', response.data)
+
+    
+    # # Test Case: Login Required to Access Protected Route
+    # def test_protected_route_requires_login(client):
+    #     response = client.get('/protected-route')  # Replace with an actual protected route
+    #     assert response.status_code == 302  # Redirect to login page
+    #     assert b'login' in response.headers['Location']
+
+    # # Test Case: User Logout
+    # def test_user_logout(client, init_database):
+    #     # Log in first
+    #     client.post('/login', data={
+    #         'email': 'testuser@example.com',
+    #         'password': 'password123'
+    #     }, follow_redirects=True)
