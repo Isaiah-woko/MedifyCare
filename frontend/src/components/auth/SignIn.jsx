@@ -82,7 +82,7 @@ export default function SignIn() {
                     </div>
                 </div>
 
-                <div className="hidden lg:block shrink-0 w-1/3 overflow-hidden before:bg-primary before:absolute before:inset-0 before:-z-10">
+                <div className="hidden lg:block shrink-0 w-2/5 overflow-hidden before:bg-primary before:absolute before:inset-0 before:-z-10">
                     <div className="absolute left-1/2 -translate-x-1/2 pointer-events-none -z-10" aria-hidden="true">
                         <img src="{..}" className="max-w-none" alt="Hero" />
                     </div>

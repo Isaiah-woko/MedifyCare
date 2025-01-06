@@ -23,7 +23,9 @@ export default function Hero() {
               className="text-xl text-grayDark mb-10"
               data-aos="zoom-out"
               data-aos-delay="200">
-              where your well-being is our top priority
+              Where your well-being is our top priority.
+                Our innovative web application connects you with essential healthcare services at your fingertips, 
+                ensuring that you can access quality medical care anytime, anywhere.
             </p>
             <div
               className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4"
@@ -31,8 +33,7 @@ export default function Hero() {
               data-aos-delay="300">
               <div>
                 <a
-                  className="btn text-white bg-gradient-to-t from-secondaryDark to-secondaryLight hover:to-secondary w-full shadow-lg group"
-                  href="/consult">
+                  className="btn text-white bg-secondaryDark hover:bg-secondary group" href="/consult">
                   Get Started{" "}
                   <span className="tracking-normal text-blue-200 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;

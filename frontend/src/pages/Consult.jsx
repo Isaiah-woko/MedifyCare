@@ -7,7 +7,6 @@ export default function Consult() {
   const [selectedRole, setSelectedRole] = useState('All');
   const navigate = useNavigate();
 
-  // Filtered doctors based on role and search term
   const filteredDoctors = doctors.filter((doctor) => {
     const matchesRole =
       selectedRole === 'All' || doctor.role.toLowerCase().includes(selectedRole.toLowerCase());
@@ -15,7 +14,6 @@ export default function Consult() {
     return matchesRole && matchesSearch;
   });
 
-  // Handle card click
   const handleCardClick = (doctorId) => {
     navigate(`/chat/${doctorId}`);
   };
@@ -49,11 +47,9 @@ export default function Consult() {
             />
           </div>
 
-          {/* Cards */}
           <div
             className="max-w-sm mx-auto sm:max-w-none grid gap-12 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-6 sm:gap-y-8 items-start mb-12 md:mb-16 "
-            data-aos-id-testimonials
-          >
+            data-aos-id-testimonials>
             {filteredDoctors.map((doctor) => (
               <article
                 key={doctor.id}
@@ -67,7 +63,8 @@ export default function Consult() {
                     <div className="relative mr-5">
                       <img
                         className="rounded-full shrink-0"
-                        src={doctor.image}
+                        // src={doctor.image}
+                        src='../assets/images/img.jpg'
                         width={48}
                         height={48}
                         alt={doctor.name}

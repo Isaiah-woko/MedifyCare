@@ -9,9 +9,10 @@ import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import ResetPasword from './components/auth/ResetPasword';
 import NewPassword from './components/auth/NewPassword';
-import { Scrollbars } from 'react-custom-scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars-2';
 import Consult from './pages/Consult';
 import ChatPage from './pages/ChatPage';
+import Footer from './components/Footer';
 
 function App() {
   useEffect(() => {
@@ -33,9 +34,10 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
             <Route path='/reset-password' element={<ResetPasword />} />
             <Route path='/new-password' element={<NewPassword />} />
-            <Route path='consult' element={<Consult />} />
+            <Route path='/consult' element={<Consult />} />
             <Route path="/chat/:id" element={<ChatPage />} />
           </Routes>
+          <Footer />
         </Router>
     </>
   );

@@ -88,8 +88,10 @@ export default function ChatPage() {
     const messages = chatHistories[currentUser] || [];
 
     return (
-        <main className='my-10'>
-            <div className="flex h-[90dvh] bg-white w-2/4 m-auto rounded-lg shadow-lg">
+<section>
+    <div className='h-20'></div>
+<main className=''>
+            <div className="flex h-[90dvh] bg-[#dea1252e] w-2/4 m-auto rounded-lg shadow-lg">
                 <div className="flex flex-1 flex-col">
                     <Scrollbars className="flex-1" ref={scrollbarRef}>
                         <div className="flex-1 overflow-y-auto p-4 max-w-[80%] min-w-[20%]">
@@ -140,5 +142,6 @@ export default function ChatPage() {
                 </div>
             </div>
         </main>
+</section>
     );
 }
