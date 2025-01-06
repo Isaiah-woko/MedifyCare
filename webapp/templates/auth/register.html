@@ -1,73 +1,118 @@
 {% extends "base.html" %}
 
 {% block extra_css %}
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 {% endblock %}
 
 {% block body %}
-    
-<div class="wrapper">
-    <form method="POST" action="{{ url_for('.register') }}" enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
-        <h1>Register</h1>
-        <div class="input-box">
-            {{ form.username.label }} <span style="color: red; font-weight: bold;">*</span>
-            {{ form.username(class_='form-control') }}
-    <i class='bx bxs-user'></i>
-            {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div class="input-box">
-            {{ form.password.label }} <span style="color: red; font-weight: bold;">*</span>
-            {{ form.password(class_='form-control') }}
-    <i class='bx bxs-lock-alt'></i>
-            {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+<main class="relative grow flex">
+    <div class="w-full bg-light">
+        <div class="h-full flex flex-col justify-center before:min-h-[4rem] md:before:min-h-[5rem] before:flex-1 after:flex-1">
+            <div class="px-4 sm:px-6">
+                <div class="w-full max-w-sm mx-auto">
+                    <div class="py-16 md:py-20">
+                        <div class="mb-8">
+                            <h1 class="h2 font-uncut-sans text-black">Sign Up</h1>
+                        </div>
+                        <form method="POST" action="{{ url_for('auth.register') }}" enctype="multipart/form-data">
+                            {{ form.hidden_tag() }}
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm text-gray-600 font-medium mb-1" for="username">User Name <span class="text-red-500">*</span></label>
+                                    {{ form.username(class_="form-input py-2 w-full", id="username") }}
+                                    {% for error in form.username.errors %}
+                                        <div class="text-red-500">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm text-gray-600 font-medium mb-1" for="email">Email <span class="text-red-500">*</span></label>
+                                    {{ form.email(class_="form-input py-2 w-full", id="email") }}
+                                    {% for error in form.email.errors %}
+                                        <div class="text-red-500">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm text-gray-600 font-medium mb-1" for="password">Password <span class="text-red-500">*</span></label>
+                                    {{ form.password(class_="form-input py-2 w-full", id="password") }}
+                                    {% for error in form.password.errors %}
+                                        <div class="text-red-500">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm text-gray-600 font-medium mb-1" for="confirm">Confirm Password <span class="text-red-500">*</span></label>
+                                    {{ form.confirm(class_="form-input py-2 w-full", id="confirm") }}
+                                    {% for error in form.confirm.errors %}
+                                        <div class="text-red-500">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm text-gray-600 font-medium mb-1" for="role">Role <span class="text-red-500">*</span></label>
+                                    {{ form.role(class_="form-select py-2 w-full", id="role") }}
+                                    {% for error in form.role.errors %}
+                                        <div class="text-red-500">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+
+                                {% if form.role.data == 'doctor' %}
+                                    <div>
+                                        <label class="block text-sm text-gray-600 font-medium mb-1" for="specialty">Specialty</label>
+                                        {{ form.specialty(class_="form-input py-2 w-full", id="specialty") }}
+                                        {% for error in form.specialty.errors %}
+                                            <div class="text-red-500">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm text-gray-600 font-medium mb-1" for="bio">Bio</label>
+                                        {{ form.bio(class_="form-textarea py-2 w-full", id="bio", rows=4) }}
+                                        {% for error in form.bio.errors %}
+                                            <div class="text-red-500">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm text-gray-600 font-medium mb-1" for="image">Upload Image</label>
+                                        {{ form.image(class_="form-input py-2 w-full", id="image") }}
+                                        {% for error in form.image.errors %}
+                                            <div class="text-red-500">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+
+                                <div class="mt-6">
+                                    <button type="submit" class="btn-sm text-white bg-gradient-to-t from-primary to-primaryLight hover:to-primaryDark w-full shadow-lg group">
+                                        Sign Up <span class="tracking-normal text-blue-200 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">-&gt;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="text-sm text-gray-500 italic mt-6 mb-4">
+                            By filling out this form, I consent to the collection and use of my personal data.
+                        </div>
+
+                        <div class="pt-4 border-t border-primary">
+                            <div class="text-sm text-gray-400">
+                                Already have an account? <a href="{{ url_for('auth.login') }}" class="font-medium text-secondary hover:text-secondaryLight">Sign In</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="input-box">
-            {{ form.confirm.label }} <span style="color: red; font-weight: bold;">*</span>
-            {{ form.confirm(class_='form-control') }}
-    <i class='bx bxs-lock-alt'></i>
-            {% for error in form.confirm.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+        <div class="hidden lg:block shrink-0 w-1/3 overflow-hidden before:bg-primary before:absolute before:inset-0 before:-z-10">
+            <div class="absolute left-1/2 -translate-x-1/2 pointer-events-none -z-10" aria-hidden="true">
+                <img src="{{ url_for('static', filename='hero_image.png') }}" class="max-w-none" alt="Hero Illustration" />
+            </div>
         </div>
-        <div class="custom-select">
-            {{ form.role.label }} <span style="color: red; font-weight: bold;">*</span>
-            {{ form.role(id='role') }}
-        </div>
-
-        <div class="input-box">
-            {{ form.specialty.label }} if you are a doctor
-            {{ form.specialty(size=32) }}
-            {% for error in form.specialty.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div class="input-box">
-            {{ form.bio.label }} if you are a doctor
-            {{ form.bio(size=32) }}
-            {% for error in form.bio.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        
-        <div class="input-box">
-            {{ form.image.label }}
-            {{ form.image }}
-            {% for error in form.image.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </div>
-        <div class="input-box">
-            <a style="align-items: center;" href="{{ url_for('google.login') }}">Register/Login With Facebook</a>
-        </div>
-        
-        <input class="button" type="submit" value="Register">
-    </form>
-</div>
+    </div>
+</main>
 {% endblock %}
