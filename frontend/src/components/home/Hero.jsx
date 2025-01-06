@@ -20,7 +20,7 @@ export default function Hero() {
               Welcome to <em className="font-italic">MedifyCare</em>
             </h1>
             <p
-              className="text-xl text-grayLight mb-10"
+              className="text-xl text-grayDark mb-10"
               data-aos="zoom-out"
               data-aos-delay="200">
               where your well-being is our top priority
@@ -32,8 +32,8 @@ export default function Hero() {
               <div>
                 <a
                   className="btn text-white bg-gradient-to-t from-secondaryDark to-secondaryLight hover:to-secondary w-full shadow-lg group"
-                  href="#0">
-                  Get Started For Free{" "}
+                  href="/consult">
+                  Get Started{" "}
                   <span className="tracking-normal text-blue-200 group-hover:translate-x-0.5 transition-transform duration-150 ease-in-out ml-1">
                     -&gt;
                   </span>
