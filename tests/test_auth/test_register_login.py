@@ -7,7 +7,7 @@ class TestAppSetup(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Create app with testing configuration
-        env = os.environ.get('WEBAPP_ENV', 'testing') ## if is not in environment just return dev
+        env = os.environ.get('WEBAPP_ENV', 'dev') ## if is not in environment just return dev
         cls.app = create_app('config.%sConfig' % env.capitalize())
         cls.app_context = cls.app.app_context()
         cls.app_context.push()

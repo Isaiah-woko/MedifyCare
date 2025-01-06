@@ -1,12 +1,13 @@
 import unittest
 from unittest.mock import MagicMock
 from webapp import create_app, db
-from webapp.chat.models import User, Message
+from webapp.auth.models import User
+from webapp.chat.models import Message
 from flask import jsonify
 from flask_socketio import SocketIO, join_room, leave_room, emit
+import os
 
-
-class MockDatabase:
+class MockDatabase(unittest.TestCase):
     """
     A mock database to simulate chat messages between doctors and patients
     """
@@ -31,7 +32,8 @@ class ChatTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Set up the Flask application and mock database."""
-        cls.app = create_app('config.TestingConfig')
+        env = os.environ.get('WEBAPP_ENV', 'dev') ## if is not in environment just return dev
+        cls.app = create_app('config.%sConfig' % env.capitalize())
         cls.client = cls.app.test_client()
         cls.app_context = cls.app.app_context()
         cls.app_context.push()
