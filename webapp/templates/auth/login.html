@@ -5,14 +5,20 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 {% endblock %}
 
+{% block head %}
+    <!-- Override the head block if needed -->
+{% endblock %}
+
+{% block header %}
+    <!-- Leave this block empty to hide the header -->
+{% endblock %}
+
 {% block body %}
     <div class="wrapper">
         <form method="POST" action="{{ url_for('.login') }}">
             {{ form.hidden_tag() }}
             <h1>Sign In to Your Account</h1>
-            <h5>
-                😊 Let's get you signed in
-            </h5>
+            <h5>😊 Let's get you signed in</h5>
             <div class="input-box">
                 <input type="text" name="username" placeholder="Username" required>
                 <i class='bx bxs-user'></i>
@@ -51,9 +57,7 @@
 
             <a href="{{ url_for('google.login') }}" class="btn-google">
                 <i class="bx bxl-google google-logo"></i>
-               
             </a>
-            
 
             <input class="btn" type="submit" value="Sign In">
 
@@ -64,4 +68,8 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/register.js') }}" defer></script>
+{% endblock %}
+
+{% block footer %}
+    <!-- Leave this block empty to hide the footer -->
 {% endblock %}

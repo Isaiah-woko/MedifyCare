@@ -14,6 +14,7 @@ class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(255), nullable=False, index=True, unique=True)
     password = db.Column(db.String(255))
+    email = db.Column(db.String(255), unique=True, nullable=False)
     specialty = db.Column(db.String(255))
     activetion = db.Column(db.Boolean, default=False)
     bio = db.Column(db.String(255))
@@ -26,9 +27,9 @@ class User(db.Model):
         backref=db.backref('users', lazy='dynamic')
     )
 
-    def __init__(self, username=""):
-        # you first you make manual defalut role then
+    def __init__(self, username, email, **kwargs):
         self.username = username
+        self.email = email
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

@@ -47,6 +47,7 @@ class RegisterForm(Form):
         DataRequired(),
         EqualTo('password', message="Passwords must match")
     ])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     role = SelectField('Role', choices=[('doctor', 'Doctor'), ('patient', 'Patient')], validators=[DataRequired()])
     specialty = StringField('Specialty')
     bio = StringField('Bio')

@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
     <a class="navbar-brand" href="{{url_for('main.index')}}">MEDIFYCARE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,33 +8,45 @@
         <ul class="navbar-nav ml-auto">
             {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <button class="button is-primary" id="submitBtn">Subscribe</button>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{url_for('auth.logout')}}">
                         <i class="fas fa-sign-out-alt"></i>Logout</a>
                 </li>
-        
+                
+                    {% if current_user.has_role('patient') %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('chat.my_doctor') }}">
                                 <i class="fa fa-fw fa-comments"></i>Consult A Doctor</a>
                         </li>
-      
+                    {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('chat.my_patients') }}">
                                 <i class="fa fa-fw fa-comments"></i>Chat with Patient</a>
                         </li>
-             
-
+                    {% endif %}
             {% else %}
+            <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('auth.login')}}">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-fw fa-home"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-fw fa-info-circle"></i>About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa fa-fw fa-concierge-bell"></i>Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">
                         <i class="fa fa-fw fa-sign-in"></i>Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('auth.register')}}">
+                    <a class="nav-link" href="{{ url_for('auth.register') }}">
                         <i class="fa fa-fw fa-sign-in"></i>Register</a>
                 </li>
+            </ul>
+            
             {% endif %}
         </ul>
     </div>
