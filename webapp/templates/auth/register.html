@@ -6,6 +6,14 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 {% endblock %}
 
+{% block head %}
+    <!-- Override head if needed -->
+{% endblock %}
+
+{% block header %}
+    <!-- Leave this block empty to hide the header -->
+{% endblock %}
+
 {% block body %}
 <main class="relative grow flex">
     <div class="w-full bg-light">
@@ -115,4 +123,8 @@
         </div>
     </div>
 </main>
+{% endblock %}
+
+{% block footer %}
+    <!-- Leave this block empty to hide the footer -->
 {% endblock %}
