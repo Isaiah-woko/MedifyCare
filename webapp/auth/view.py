@@ -78,15 +78,15 @@ def register():
     if form.validate_on_submit():
         new_user = User(username=form.username.data, email=form.email.data)
         new_user.set_password(form.password.data)
-        #selected_role = Role.query.get(form.role.data)
-        #new_user.roles.append(selected_role)
-        #new_user.specialty = form.specialty.data
-        #new_user.bio = form.bio.data
-        #file = form.image.data
-        #if file and allowed_file(file.filename):
-            #filename = secure_filename(file.filename)
-            #file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
-            #new_user.image_filename = filename
+        selected_role = Role.query.get(form.role.data)
+        new_user.roles.append(selected_role)
+        new_user.specialty = form.specialty.data
+        new_user.bio = form.bio.data
+        file = form.image.data
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(current_app.config['UPLOAD_FOLDER'], filename))
+            new_user.image_filename = filename
         db.session.add(new_user)
         db.session.commit()
 
