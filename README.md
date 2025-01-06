@@ -47,7 +47,7 @@ To install and run this project locally:
 Once the platform is up and running, users can:
 
 - **Register or Log in**: Both patients and doctors can register or log in to access their respective dashboards.
-- **Reset password feature: Both doctors and patients can reset there password using there email to git reset link.
+- Reset password feature: Both doctors and patients can reset there password using there email to git reset link.
 - **Consult a Doctor**: Patients can engage in real-time chat with doctors.
 - **AI-Powered FAQs**: Patients can get instant feedback about common queries related to the platform.
 - **Request a Video Call**: Patients can request a video consultation with doctors.
