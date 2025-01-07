@@ -13,13 +13,12 @@ main_blueprint = Blueprint(
 @main_blueprint.route('/')
 def index():
 	doctors = db.session.query(
-        User.username).all()
-        #User.specialty,
-        #User.bio,
-		#User.image_filename
-        # User.is_available  # Assuming you have a field for availability
-    #).join(User.roles).filter(Role.name == 'doctor').all()
+        User.username,
+        User.specialty,
+        User.bio,
+		User.image_filename
+    ).join(User.roles).filter(Role.name == 'doctor').all()
 
-	#specialties = list(set(doctor.specialty for doctor in doctors))
+	specialties = list(set(doctor.specialty for doctor in doctors))
 	return render_template('home.html',doctors= doctors)	
 
