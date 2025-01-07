@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Patrick Hills",
+    "role": "CEO, Acme Inc.",
+    "image": "path/to/image1.jpg",
+    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "delay": 0
+  },
+  {
+    "id": 2,
+    "name": "Jeff Wong",
+    "role": "CEO, Acme Inc.",
+    "image": "path/to/image2.jpg",
+    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "delay": 100
+  },
+  {
+    "id": 3,
+    "name": "Amy Tolinski",
+    "role": "CEO, Acme Inc.",
+    "image": "path/to/image3.jpg",
+    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "delay": 200
+  },
+  {
+    "id": 4,
+    "name": "Chris Mallard",
+    "role": "CEO, Acme Inc.",
+    "image": "path/to/image4.jpg",
+    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "delay": 300
+  },
+  {
+    "id": 5,
+    "name": "Cathie Wood",
+    "role": "CEO, Acme Inc.",
+    "image": "path/to/image5.jpg",
+    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "delay": 400
+  },
+  {
+    "id": 6,
+    "name": "Mary Duncan",
+    "role": "CEO, Acme Inc.",
+    "image": "path/to/image6.jpg",
+    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "delay": 500
+  }
+]
