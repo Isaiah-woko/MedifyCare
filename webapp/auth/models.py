@@ -1,6 +1,8 @@
-
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
+from flask import current_app
 from . import bcrypt, AnonymousUserMixin
 from .. import db
+from sqlalchemy import Text
 
 # the junction table for many-many relationship between (user, role)
 roles = db.Table(
@@ -17,7 +19,7 @@ class User(db.Model):
     email = db.Column(db.String(255), unique=True, nullable=False)
     specialty = db.Column(db.String(255))
     activetion = db.Column(db.Boolean, default=False)
-    bio = db.Column(db.String(255))
+    bio = db.Column(Text)
     image_filename = db.Column(db.String(150))
     sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy=True)
     received_messages = db.relationship('Message', foreign_keys='Message.receiver_id', backref='receiver', lazy=True)
@@ -72,6 +74,32 @@ class User(db.Model):
     @property
     def actived_subscription(self):
         return self.activetion
+
+    def generate_reset_password_token(self):
+        serializer = URLSafeTimedSerializer(current_app.config['SECRET_KEY'])
+        return serializer.dumps(self.email, salt=self.password)
+
+    @staticmethod
+    def validate_reset_password_token(token: str, user_id: int):
+        user = db.session.get(User, user_id)
+        if user is None:
+            return None
+
+        serializer = URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
+        try:
+             token_user_email = serializer.loads(
+                token,
+                max_age=current_app.config['RSET_PASS_TOKEN_MAX_AGE'],
+                salt=user.password,
+            )
+        except (BadSignature, SignatureExpired):
+            return None
+        if token_user_email != user.email:
+            return None
+
+        return user
+
+
 # the Role model
 class Role(db.Model):
     id = db.Column(db.Integer(), primary_key=True)

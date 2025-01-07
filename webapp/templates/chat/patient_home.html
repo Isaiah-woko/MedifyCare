@@ -1,13 +1,20 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consult a Doctor</title>
+{% extends "base.html" %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='patient_home.css') }}">
-</head>
-<body>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+{% endblock %}
+
+{% block head %}
+    <!-- Override the head block if needed -->
+{% endblock %}
+
+{% block header %}
+    <!-- Leave this block empty to hide the header -->
+{% endblock %}
+
+{% block body %}
     <header>
         <h1>Consult a Doctor</h1>
         <p>Get expert medical advice from our team of specialists</p>
@@ -65,5 +72,9 @@
         </div>
     </section>
     <script src="{{ url_for('static', filename='js/patient_home.js') }}" defer></script>
-</body>
-</html>
+{% endblock %}
+
+{% block footer %}
+    <!-- Leave this block empty to hide the footer -->
+{% endblock %}
+    
