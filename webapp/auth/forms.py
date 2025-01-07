@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm as Form
 from flask_wtf import RecaptchaField
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, ValidationError
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, ValidationError, TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo, URL, Email
 from .models import User, Role
 from flask_wtf.file import FileField, FileRequired
@@ -52,9 +52,9 @@ class RegisterForm(FlaskForm):
         EqualTo('password', message="Passwords must match")
     ])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    role = SelectField('Role', validators=[DataRequired()], coerce=int)  # Using `int` since `role.id` is likely an integer
+    role = SelectField('Role', choices=[(1, 'Doctor'), (2, 'Patient')], validators=[DataRequired()], coerce=int)
     specialty = StringField('Specialty')
-    bio = StringField('Bio')
+    bio = TextAreaField('Bio')
     image = FileField('Upload Image')
 
     def __init__(self, *args, **kwargs):

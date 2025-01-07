@@ -67,7 +67,7 @@
                                     {% endfor %}
                                 </div>
 
-                                {% if form.role.data == 'doctor' %}
+                                <div class="doctor-only" style="display: none;">
                                     <div>
                                         <label class="block text-sm text-gray-600 font-medium mb-1" for="specialty">Specialty</label>
                                         {{ form.specialty(class_="form-input py-2 w-full", id="specialty") }}
@@ -83,6 +83,7 @@
                                             <div class="text-red-500">{{ error }}</div>
                                         {% endfor %}
                                     </div>
+                                    
 
                                     <div>
                                         <label class="block text-sm text-gray-600 font-medium mb-1" for="image">Upload Image</label>
@@ -91,7 +92,7 @@
                                             <div class="text-red-500">{{ error }}</div>
                                         {% endfor %}
                                     </div>
-                                {% endif %}
+                                </div>
 
                                 <div class="mt-6">
                                     <button type="submit" class="btn-sm text-white bg-gradient-to-t from-primary to-primaryLight hover:to-primaryDark w-full shadow-lg group">
@@ -115,14 +116,28 @@
                 </div>
             </div>
         </div>
-
-        <div class="hidden lg:block shrink-0 w-1/3 overflow-hidden before:bg-primary before:absolute before:inset-0 before:-z-10">
-            <div class="absolute left-1/2 -translate-x-1/2 pointer-events-none -z-10" aria-hidden="true">
-                <img src="{{ url_for('static', filename='hero_image.png') }}" class="max-w-none" alt="Hero Illustration" />
-            </div>
-        </div>
     </div>
 </main>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const roleField = document.getElementById('role');
+        const doctorFields = document.querySelectorAll('.doctor-only');
+
+        function toggleDoctorFields() {
+            if (roleField.value === '1') { // Assuming '1' is the value for 'Doctor'
+                doctorFields.forEach(field => field.style.display = 'block');
+            } else {
+                doctorFields.forEach(field => field.style.display = 'none');
+            }
+        }
+
+        // Initialize the visibility on page load
+        toggleDoctorFields();
+
+        // Add event listener for role change
+        roleField.addEventListener('change', toggleDoctorFields);
+    });
+</script>
 {% endblock %}
 
 {% block footer %}
