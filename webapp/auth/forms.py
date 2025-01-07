@@ -40,7 +40,11 @@ class LoginForm(Form):
         return True
 
 # registration form and validater
-class RegisterForm(Form):
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SelectField, FileField
+from wtforms.validators import DataRequired, Length, Email, EqualTo
+
+class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(max=255)])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm = PasswordField('Confirm Password', validators=[
@@ -48,14 +52,16 @@ class RegisterForm(Form):
         EqualTo('password', message="Passwords must match")
     ])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    role = SelectField('Role', choices=[('doctor', 'Doctor'), ('patient', 'Patient')], validators=[DataRequired()])
+    role = SelectField('Role', validators=[DataRequired()], coerce=int)  # Using `int` since `role.id` is likely an integer
     specialty = StringField('Specialty')
     bio = StringField('Bio')
     image = FileField('Upload Image')
+
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
-        # Fetch roles from the database and set choices
+        # Fetch roles from the database and populate the dropdown dynamically
         self.role.choices = [(role.id, role.name.capitalize()) for role in Role.query.all()]
+
 
     def validate(self, extra_validators=None):
         # Perform standard validation
