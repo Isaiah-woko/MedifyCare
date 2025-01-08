@@ -3,39 +3,39 @@ export default function Footer() {
   return (
     <footer>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-
         <div className="grid sm:grid-cols-12 gap-8 py-8 md:py-12">
-
           <div className="sm:col-span-12 lg:col-span-4 lg:max-w-xs">
             <div className="mb-2">
               <Link href="/" className="inline-flex text-secondaryDark transition duration-150 ease-in-out" aria-label="Cruip">
                 <img src='../assets/images/favicon-96x96.png' alt='logo'/>
               </Link>
             </div>
-            <div className="text-lg font-bold text-slate-800">Where your well-being is our top priority.</div>
+            <div className="text-lg font-bold text-slate-800">Connecting doctors and patients worldwide for quality healthcare.</div>
           </div>
 
           <div className="sm:col-span-6 md:col-span-4 lg:col-span-4">
-            <h6 className="text-sm text-slate-800 font-semibold mb-2">How it works</h6>
+            <h6 className="text-sm text-slate-800 font-semibold mb-2">Services</h6>
             <ul className="text-sm font-medium space-y-2">
               <li>
-                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">Overview</a>
+                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">Home Care Services</a>
               </li>
               <li>
-                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">Service Areas</a>
+                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">Online Medical Consultation</a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">24/7 Doctor Chat Support</a>
               </li>
             </ul>
           </div>
 
-          {/* 3rd block */}
           <div className="sm:col-span-6 md:col-span-4 lg:col-span-4">
-            <h6 className="text-sm text-slate-800 font-semibold mb-2">Resources</h6>
+            <h6 className="text-sm text-slate-800 font-semibold mb-2">Contact Us</h6>
             <ul className="text-sm font-medium space-y-2">
               <li>
-                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">Knowledge Base</a>
+                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">Email: support@MedifyCare.com</a>
               </li>
               <li>
-                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">Contact Us</a>
+                <a href="#" className="text-slate-500 hover:text-secondaryDark transition duration-150 ease-in-out">Phone: +1 234 567 890</a>
               </li>
             </ul>
           </div>
@@ -43,10 +43,8 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom area */}
         <div className="md:flex md:items-center md:justify-between py-6 md:py-8 border-t border-slate-200">
 
-          {/* Social links */}
           <ul className="flex space-x-6 mb-4 md:order-1 md:ml-4 md:mb-0">
             <li>
               <a className="text-secondaryDark hover:text-secondary transition duration-150 ease-in-out" href="#0" aria-label="Twitter">
@@ -78,8 +76,7 @@ export default function Footer() {
             </li>
           </ul>
 
-          {/* Copyrights note */}
-          <div className="text-sm text-slate-500 mr-4">© alaa. All rights reserved.</div>
+          <div className="text-sm text-slate-500 mr-4">© MedifyCare. All rights reserved.</div>
 
         </div>
 
