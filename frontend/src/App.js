@@ -13,6 +13,7 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 import Consult from './pages/Consult';
 import ChatPage from './pages/ChatPage';
 import Footer from './components/Footer';
+import About from './pages/About';
 
 function App() {
   useEffect(() => {
@@ -36,6 +37,7 @@ function App() {
             <Route path='/new-password' element={<NewPassword />} />
             <Route path='/consult' element={<Consult />} />
             <Route path="/chat/:id" element={<ChatPage />} />
+            <Route path='about' element={<About />} />
           </Routes>
           <Footer />
         </Router>

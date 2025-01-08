@@ -1,15 +1,15 @@
 import React from 'react'
 import Hero from '../components/home/Hero'
 import CTA from '../components/home/CTA'
-import SecTwo from '../components/home/SecTwo'
+import Services from '../components/Services'
 
 
 export default function Home() {
   return (
     <>
-    <Hero />
-    <SecTwo />
-    <CTA />
+      <Hero />
+      <Services />
+      <CTA />
     </>
   )
 }
