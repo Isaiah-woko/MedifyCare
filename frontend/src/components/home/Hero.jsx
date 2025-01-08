@@ -24,7 +24,7 @@ export default function Hero() {
               data-aos="zoom-out"
               data-aos-delay="200">
               Where your well-being is our top priority.
-                Our innovative web application connects you with essential healthcare services at your fingertips, 
+                Our innovative web application connects you with essential healthcare services at your fingertips,
                 ensuring that you can access quality medical care anytime, anywhere.
             </p>
             <div
