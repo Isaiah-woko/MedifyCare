@@ -30,7 +30,7 @@ source venv/bin/activate;
 echo --------------------
 echo Generate the Test data
 echo --------------------
-# python3 -B test_data.py
+python3 -B test_data.py
 echo --------------------
 echo Running the app
 echo --------------------

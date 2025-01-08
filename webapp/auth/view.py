@@ -135,7 +135,6 @@ def send_reset_password_email(user):
             to=[user.email]
     )
     message.content_subtype = 'html'
-
     message.send()
 
 

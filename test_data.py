@@ -4,16 +4,15 @@ from webapp import create_app
 from webapp import db
 from webapp.auth.models import User, Role
 from webapp.auth import bcrypt
-from config import ProdConfig
+from config import devConfig
 
 
 logging.basicConfig(format='%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 logging.getLogger().setLevel(logging.DEBUG)
 
 log = logging.getLogger(__name__)
-app = create_app(ProdConfig)
+app = create_app(devConfig)
 app.app_context().push()
-
 
 
 fake_users = [
@@ -23,7 +22,10 @@ fake_users = [
     {'username': 'Dr.Michael Johnson', 'role': 'doctor', 'specialty': 'orthopedics', 'bio': '7 years of experinace in orthopedic surgeon specializing in sports injuries and joint replacement.'},
     {'username': 'Dr.Emily Clark', 'role': 'doctor', 'specialty': 'pediatrics', 'bio': '10 years expertise in child development and preventive care.focusing on early diagnosis and management of common pediatric conditions.'}
 ]
-fake_roles = ['doctor', 'patient']
+fake_roles = [
+    {1,'doctor', 'doctor'},
+    {2,'patient', 'patient'},
+    ]
 
 
 def generate_roles():
