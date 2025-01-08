@@ -1,50 +1,50 @@
 [
   {
     "id": 1,
-    "name": "Patrick Hills",
-    "role": "CEO, Acme Inc.",
+    "name": "Dr. Patrick Hills",
+    "role": "Cardiologist",
     "image": "path/to/image1.jpg",
-    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "quote": "I highly recommend this innovative treatment for heart disease.",
     "delay": 0
   },
   {
     "id": 2,
-    "name": "Jeff Wong",
-    "role": "CEO, Acme Inc.",
+    "name": "Dr. Jeff Wong",
+    "role": "Oncologist",
     "image": "path/to/image2.jpg",
-    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "quote": "This new cancer therapy has shown promising results in clinical trials.",
     "delay": 100
   },
   {
     "id": 3,
-    "name": "Amy Tolinski",
-    "role": "CEO, Acme Inc.",
+    "name": "Dr. Amy Tolinski",
+    "role": "Pediatrician",
     "image": "path/to/image3.jpg",
-    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "quote": "I'm impressed with the positive impact this program has on children's health.",
     "delay": 200
   },
   {
     "id": 4,
-    "name": "Chris Mallard",
-    "role": "CEO, Acme Inc.",
+    "name": "Dr. Chris Mallard",
+    "role": "Neurologist",
     "image": "path/to/image4.jpg",
-    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "quote": "This breakthrough treatment offers hope for patients with neurological disorders.",
     "delay": 300
   },
   {
     "id": 5,
-    "name": "Cathie Wood",
-    "role": "CEO, Acme Inc.",
+    "name": "Dr. Cathie Wood",
+    "role": "Dermatologist",
     "image": "path/to/image5.jpg",
-    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "quote": "I'm confident this new approach to skin care will revolutionize the field.",
     "delay": 400
   },
   {
     "id": 6,
-    "name": "Mary Duncan",
-    "role": "CEO, Acme Inc.",
+    "name": "Dr. Mary Duncan",
+    "role": "Surgeon",
     "image": "path/to/image6.jpg",
-    "quote": "Tidy has been the system to drive change in collaboration on content for our organisation.",
+    "quote": "This innovative surgical technique has significantly improved patient outcomes.",
     "delay": 500
   }
 ]
