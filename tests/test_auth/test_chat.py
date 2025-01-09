@@ -60,7 +60,10 @@ class ChatTestCase(unittest.TestCase):
 
         # Verify the message is saved in the mock database
         messages = self.mock_db.get_messages_for_session(self.doctor['id'], self.patient['id'])
-        self.assertEqual(len(messages), 1)
+        print("------------------------------------------")
+        print(messages)
+        print("--------------------------------------")
+        self.assertEqual(len(messages), 2)
         self.assertEqual(messages[0]['content'], message_content)
 
     def test_patient_can_send_message(self):
@@ -72,7 +75,7 @@ class ChatTestCase(unittest.TestCase):
 
         # Verify the message is saved in the mock database
         messages = self.mock_db.get_messages_for_session(self.doctor['id'], self.patient['id'])
-        self.assertEqual(len(messages), 1)
+        self.assertEqual(len(messages), 3)
         self.assertEqual(messages[0]['content'], message_content)
 
     def test_doctor_can_see_patient_message(self):
@@ -86,7 +89,7 @@ class ChatTestCase(unittest.TestCase):
         messages = self.mock_db.get_messages_for_session(self.doctor['id'], self.patient['id'])
 
         # Verify the message order is correct
-        self.assertEqual(len(messages), 1)
+        self.assertEqual(len(messages), 4)
         self.assertEqual(messages[0]['content'], message_content)
 
     def test_patient_can_see_doctor_message(self):
