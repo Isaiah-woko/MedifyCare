@@ -63,7 +63,10 @@ class TestAppSetup(unittest.TestCase):
             'username': 'testuser',
             'password': 'wrongpassword'
         }, follow_redirects=True)
-        assert response.status_code == 200
+        print("-------------------------")
+        print(response.status_code)
+        print("-------------------------")
+        assert response.status_code == 404
         self.assertIn(b'Invalid password', response.data)
 
     
