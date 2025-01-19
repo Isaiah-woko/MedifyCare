@@ -1,0 +1,144 @@
+.message-list .rce-mbox.rce-mbox-right {
+    background-color: #e8feff;
+    border-radius: 8px;
+  }
+  .rce-mbox-right-notch,
+  .rce-mbox-left-notch {
+    display: none;
+    }
+    div.rce-mbox {
+      background-color: #f3f3f3;
+      border-radius: 8px;
+      box-shadow: none;
+      min-width: 45%;
+  }
+  .rce-citem{
+    border-radius: 10px;
+    }
+    .rce-citem:hover{
+    background-color: #f1f1f1;
+  }
+  .rce-citem-body--top-title{
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .rce-citem-body--bottom-title{
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+  }
+  .rce-citem-body--top-time{
+    font-size: 10px;
+  }
+  div.rce-container-clist.chat-list.rounded{
+    background-color: #fff;
+    margin-top: 10px;
+  }
+  .rce-mbox-time .non-copiable::after{
+    background-color: #666;
+  }
+  div.rce-citem{
+    height: 50px;
+  }
+  .current-chat div.rce-citem{
+    background-color: #4cbfc2;
+    }
+  .current-chat div.rce-citem,
+  .current-chat .rce-mbox-time .non-copiable::after,
+  .current-chat .rce-citem-body--bottom-title,
+  .current-chat .rce-citem-body--top-time{
+    color: #fff;
+  }
+  .rce-citem-body--bottom-title{
+    font-size: 11px;
+  }
+  
+  .company-chat  div.rce-citem{
+    background-color: #f5f5f5;
+    margin-bottom: 10px;
+  }
+  
+  .company-chat  div.rce-citem-body{
+  border-bottom: 0;
+  }
+  
+  .rce-avatar-container .rce-avatar{
+    width: 70%;
+    height: 70%;
+  }
+  .rce-mbox-text:after{
+    display: none;
+  }
+  
+  /* loader */
+  .chat-loader {
+    position: relative;
+    border-style: solid;
+    box-sizing: border-box;
+    border-width: 20px 30px 15px 30px;
+    border-color: #3760C9 #96DDFC #96DDFC #36BBF7;
+    animation: envFloating 1s ease-in infinite alternate;
+  }
+  
+  .chat-loader:after{
+    content:"";
+    position: absolute;
+    right: 31px; 
+    top: -20px; 
+    height: 35px; 
+    width: 25px; 
+    background-image:
+              linear-gradient(#575757 22px, transparent 0),
+              linear-gradient(#575757 22px, transparent 0), 
+              linear-gradient(#575757 22px, transparent 0); 
+    background-repeat: no-repeat;
+    background-size: 15px 2px; 
+    background-position: 0px 5px , 4px 17px, 0px 30px;
+    animation: envDropping 0.75s linear infinite;
+  }
+  
+  @keyframes envFloating {
+    0% { transform: translate(-1px, -2.5px)} 
+    100% { transform: translate(0, 2.5px)} 
+  }
+  
+  @keyframes envDropping {
+    0% {background-position: 50px 5px , 57.5px 17px, 52.5px 30px; opacity: 1;}
+    50% {background-position: 0px 5px , 10px 17px, 2.5px 30px; }
+    60% {background-position: -15px 5px , 0px 17px, -5px 30px; }
+    75%, 100% {background-position: -15px 5px , -15px 17px, -15px 30px; opacity: 0;}
+  }
+  
+  
+  /* button  */
+  .yes-btn {
+    border: none;
+    text-align: center;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  
+  .yes-btn span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .yes-btn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .yes-btn:hover span {
+    padding-right: 15px;
+  }
+  
+  .yes-btn:hover span:after {
+    opacity: 1;
+    right: 0;
+  }

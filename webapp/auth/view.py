@@ -42,7 +42,7 @@ def login():
 
 @auth_blueprint.route('/google-login')
 def google_login():
-    redirect_uri = url_for('auth.google_authorized', _external=True)
+    redirect_uri = url_for('auth.google_authorized', _external=True, _scheme='http')
     return google.authorize_redirect(redirect_uri)
 
 @auth_blueprint.route('/google-authorized')
@@ -135,7 +135,6 @@ def send_reset_password_email(user):
             to=[user.email]
     )
     message.content_subtype = 'html'
-
     message.send()
 
 

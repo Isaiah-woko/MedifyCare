@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Patrick Hills",
+    "role": "Cardiologist",
+    "image": "path/to/image1.jpg",
+    "quote": "I highly recommend this innovative treatment for heart disease.",
+    "delay": 0
+  },
+  {
+    "id": 2,
+    "name": "Dr. Jeff Wong",
+    "role": "Oncologist",
+    "image": "path/to/image2.jpg",
+    "quote": "This new cancer therapy has shown promising results in clinical trials.",
+    "delay": 100
+  },
+  {
+    "id": 3,
+    "name": "Dr. Amy Tolinski",
+    "role": "Pediatrician",
+    "image": "path/to/image3.jpg",
+    "quote": "I'm impressed with the positive impact this program has on children's health.",
+    "delay": 200
+  },
+  {
+    "id": 4,
+    "name": "Dr. Chris Mallard",
+    "role": "Neurologist",
+    "image": "path/to/image4.jpg",
+    "quote": "This breakthrough treatment offers hope for patients with neurological disorders.",
+    "delay": 300
+  },
+  {
+    "id": 5,
+    "name": "Dr. Cathie Wood",
+    "role": "Dermatologist",
+    "image": "path/to/image5.jpg",
+    "quote": "I'm confident this new approach to skin care will revolutionize the field.",
+    "delay": 400
+  },
+  {
+    "id": 6,
+    "name": "Dr. Mary Duncan",
+    "role": "Surgeon",
+    "image": "path/to/image6.jpg",
+    "quote": "This innovative surgical technique has significantly improved patient outcomes.",
+    "delay": 500
+  }
+]

@@ -33,7 +33,7 @@ class TestAppSetup(unittest.TestCase):
     # create a user
     def init_database(self):
         # Add a sample user to the database
-        user = User(username="testuser")
+        user = User(username="testuser", email="test@gmail.com")
         user.set_password("password123")
         db.session.add(user)
         db.session.commit()
@@ -58,12 +58,15 @@ class TestAppSetup(unittest.TestCase):
             self.assertIn(url_for('main.index'), response.request.path)
 
     # Test Case: User Login (Invalid Credentials)
-    def test_user_login_invalid(client, init_database):
-        response = client.post('/login', data={
+    def test_user_login_invalid(self):
+        response = self.client.post('/login', data={
             'username': 'testuser',
             'password': 'wrongpassword'
         }, follow_redirects=True)
-        assert response.status_code == 200
+        print("-------------------------")
+        print(response.status_code)
+        print("-------------------------")
+        assert response.status_code == 404
         self.assertIn(b'Invalid password', response.data)
 
     

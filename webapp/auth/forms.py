@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm as Form
 from flask_wtf import RecaptchaField
-from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, ValidationError
+from wtforms import StringField, PasswordField, BooleanField, SelectField, SubmitField, ValidationError, TextAreaField
 from wtforms.validators import DataRequired, Length, EqualTo, URL, Email
 from .models import User, Role
 from flask_wtf.file import FileField, FileRequired
@@ -40,7 +40,11 @@ class LoginForm(Form):
         return True
 
 # registration form and validater
-class RegisterForm(Form):
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SelectField, FileField
+from wtforms.validators import DataRequired, Length, Email, EqualTo
+
+class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(max=255)])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm = PasswordField('Confirm Password', validators=[
@@ -48,14 +52,16 @@ class RegisterForm(Form):
         EqualTo('password', message="Passwords must match")
     ])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    role = SelectField('Role', choices=[('doctor', 'Doctor'), ('patient', 'Patient')], validators=[DataRequired()])
+    role = SelectField('Role', choices=[(1, 'Doctor'), (2, 'Patient')], validators=[DataRequired()], coerce=int)
     specialty = StringField('Specialty')
-    bio = StringField('Bio')
+    bio = TextAreaField('Bio')
     image = FileField('Upload Image')
+
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
-        # Fetch roles from the database and set choices
+        # Fetch roles from the database and populate the dropdown dynamically
         self.role.choices = [(role.id, role.name.capitalize()) for role in Role.query.all()]
+
 
     def validate(self, extra_validators=None):
         # Perform standard validation

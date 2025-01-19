@@ -53,13 +53,15 @@
                 <a href="{{ url_for('auth.reset_password_request') }}">Forget password?</a>
             </div>
 
+            <input class="btn" type="submit" value="Sign In">
+            <br>
+            <br>
+
             <p>OR</p>
 
             <a href="{{ url_for('google.login') }}" class="btn-google">
                 <i class="bx bxl-google google-logo"></i>
             </a>
-
-            <input class="btn" type="submit" value="Sign In">
 
             <div class="register-link">
                 <p>Don't have an account? <a href="{{ url_for('auth.register') }}">Register</a></p>

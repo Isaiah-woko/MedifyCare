@@ -2,6 +2,7 @@ from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
 from flask import current_app
 from . import bcrypt, AnonymousUserMixin
 from .. import db
+from sqlalchemy import Text
 
 # the junction table for many-many relationship between (user, role)
 roles = db.Table(
@@ -18,7 +19,7 @@ class User(db.Model):
     email = db.Column(db.String(255), unique=True, nullable=False)
     specialty = db.Column(db.String(255))
     activetion = db.Column(db.Boolean, default=False)
-    bio = db.Column(db.String(255))
+    bio = db.Column(Text)
     image_filename = db.Column(db.String(150))
     sent_messages = db.relationship('Message', foreign_keys='Message.sender_id', backref='sender', lazy=True)
     received_messages = db.relationship('Message', foreign_keys='Message.receiver_id', backref='receiver', lazy=True)
