@@ -2,18 +2,20 @@
 {% extends "base.html" %}
 {% block body %}
 
-<div class="about-us-section container mt-5">
+<div id="about-us" class="about-us-section container mt-5">
     <h2>About Us</h2>
     <div class="row align-items-center">
         <div class="col-md-6">
             <img src="../static/images/home1.jpg" class="img-fluid" alt="About Us Image">
         </div>
         <div class="col-md-6">
-            <h3>Who We Are</h3>
+            <h2>Who We Are</h2>
             <p>At MedifyCare, we are dedicated to bridging the gap between patients and healthcare providers worldwide. Our mission is to create a seamless platform that connects individuals seeking quality healthcare with experienced doctors, ensuring everyone has access to the medical services they need.</p>
-            <h5>Our Mission</h5>
+            <br>
+            <h5><strong>Our Mission</strong></h5>
             <p>To empower patients by providing easy access to healthcare professionals and enhancing the healthcare experience through technology, transparency, and compassion.</p>
-            <h5>Our Vision</h5>
+            <br>
+            <h5><strong>Our Vision</strong></h5>
             <p>We envision a world where everyone, regardless of location, can connect with qualified healthcare providers, receive timely medical attention, and improve their overall well-being. Together, we strive to make quality healthcare accessible to all.</p>
         </div>
     </div>
@@ -21,7 +23,7 @@
 
 <!-- Services Section -->
 
-<div class="services-section container">
+<div id="services" class="services-section container">
     <h2>Our Services</h2>
     <div class="row">
         <div class="col-md-4">
@@ -58,7 +60,7 @@
 
 <!-- About Doctors Section -->
 <div class="healthcare-professionals-section container mt-5">
-    <h2 class="text-center mb-4">Meet Our Healthcare Professionals</h2>
+    <h2 class="text-center mb-4"><strong>Meet Our Healthcare Professionals</strong></h2>
     <div class="row">
         {% for doctor in doctors %}
         <div class="col-md-6 col-lg-4 mb-4">
