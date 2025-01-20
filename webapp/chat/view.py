@@ -69,18 +69,21 @@ def my_patients():
         .filter(Role.name == 'patient')\
         .distinct().all()
 
-    # Extract unique patients from the messages
-    patients = [message.sender for message in messages]
+    # Extract unique patients using a set to avoid duplicates
+    unique_patients = {}
+    for message in messages:
+        patient = message.sender
+        if patient.id not in unique_patients:
+            # Fetch the first message for this patient
+            first_message = Message.query.filter_by(sender_id=patient.id, receiver_id=current_user.id)\
+                                         .order_by(Message.timestamp.asc()).first()
+            unique_patients[patient.id] = {
+                'patient': patient,
+                'first_message': first_message
+            }
 
-    # For each patient, fetch the first message they sent
-    patient_data = []
-    for patient in patients:
-        first_message = Message.query.filter_by(sender_id=patient.id, receiver_id=current_user.id)\
-                                     .order_by(Message.timestamp.asc()).first()
-        patient_data.append({
-            'patient': patient,
-            'first_message': first_message
-        })
+    # Convert unique patients data to a list
+    patient_data = list(unique_patients.values())
 
     return render_template('doc_home.html', patient_data=patient_data)
 
