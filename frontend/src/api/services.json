@@ -1,0 +1,25 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "image": "service-1.jpg",
+      "name": "Home Care Services",
+      "description": "Providing medical care at home.",
+      "delay": 0
+    },
+    {
+      "id": 2,
+      "image": "service-2.jpg",
+      "name": "Online Medical Consultation",
+      "description": "Consult with doctors online.",
+      "delay": 100
+    },
+    {
+      "id": 3,
+      "image": "service-3.jpg",
+      "name": "24/7 Doctor Chat Support",
+      "description": "Chat with doctors anytime.",
+      "delay": 200
+    }
+  ]
+}
