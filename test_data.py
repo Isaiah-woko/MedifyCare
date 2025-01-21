@@ -49,10 +49,9 @@ def generate_users():
         if user:
             users.append(user)
             continue
-        user = User()
+        user = User(item['username'],item['email'])
         poster = Role.query.filter_by(name=item['role']).one()
         user.roles.append(poster)
-        user.username = item['username']
         user.email = item['email']
         if item['role'] == 'doctor':
             user.specialty = item['specialty']

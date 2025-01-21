@@ -30,10 +30,10 @@ source venv/bin/activate;
 echo --------------------
 echo Generate the Test data
 echo --------------------
-#python3 -B test_data.py
+python3 test_data.py
 echo --------------------
 echo Running the app
 echo --------------------
 export FLASK_ENV=development
 export FLASK_DEBUG=1
-flask run --cert=adhoc
+flask run # --cert=adhoc
