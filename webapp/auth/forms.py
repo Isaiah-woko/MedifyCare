@@ -29,7 +29,7 @@ class LoginForm(Form):
         # Does our user exist
         user = User.query.filter_by(email=self.email.data).first()
         if not user:
-            self.email.errors.append('Invalid username or password')
+            self.email.errors.append('Invalid email or password')
             return False
 
         # Do the passwords match
@@ -40,18 +40,15 @@ class LoginForm(Form):
         return True
 
 # registration form and validater
-from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SelectField, FileField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
-
-class RegisterForm(FlaskForm):
+class RegisterForm(Form):
+    ''' Register form for the new user'''
     username = StringField('Username', validators=[DataRequired(), Length(max=255)])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired(), Length(min=8)])
     confirm = PasswordField('Confirm Password', validators=[
         DataRequired(),
         EqualTo('password', message="Passwords must match")
     ])
-    email = StringField('Email', validators=[DataRequired(), Email()])
     role = SelectField('Role', choices=[(1, 'Doctor'), (2, 'Patient')], validators=[DataRequired()], coerce=int)
     specialty = StringField('Specialty')
     bio = TextAreaField('Bio')
@@ -84,12 +81,17 @@ class RegisterForm(FlaskForm):
             if not allowed_file(filename):
                 self.image.errors.append('Invalid image format')
                 return False
-        # Custom validation: Check if the username already exists
-        user = User.query.filter_by(username=self.username.data).first()
-        if user:
-            self.username.errors.append("User with that name already exists")
-            return False
+        # Custom validation: Check if the email already exists
+        user_by_email = User.query.filter_by(email=self.email.data).first()
+        user_by_username = User.query.filter_by(username=self.username.data).first()
 
+        if user_by_email:
+            self.email.errors.append("User with that email already exists")
+        if user_by_username:
+            self.username.errors.append("User with that username already exists")
+
+        if user_by_email or user_by_username:
+            return False
         return True     
 
 class ResetPasswordRequestForm(Form):
